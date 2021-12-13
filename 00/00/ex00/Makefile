@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/11 21:26:54 by rmander           #+#    #+#              #
-#    Updated: 2021/12/11 21:34:37 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/13 03:14:19 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,14 +16,14 @@ CC = clang++
 CPPFLAGS = -fsanitize=address -fsanitize=undefined -fno-omit-frame-pointer -g3 -O0 -std=c++98 -Wall -Wextra -Werror
 
 SRCS = ./megaphone.cpp
-OBJS = $(SRCS:.c=.o)
+OBJS = $(SRCS:.cpp=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CPPFLAGS) $^ -o $@
 
-%.o: %.c
+%.o: %.cpp
 	$(CC) $(CPPFLAGS) -c $< -o $@
 
 clean:
