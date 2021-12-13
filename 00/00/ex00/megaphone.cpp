@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 21:34:40 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 03:17:02 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/13 03:41:25 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,3 +29,4 @@ int main(int argc, char *argv[])
 	std::cout<<std::endl;
 	return (EXIT_SUCCESS);
 }
+
