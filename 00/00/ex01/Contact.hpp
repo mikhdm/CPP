@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 03:41:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 05:19:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/13 06:58:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,25 @@
 #include <string>
 
 class Contact {
+
 public:
-	Contact();
-	~Contact();
-	Contact(Contact &contact);
-	Contact &operator=(Contact &contact);
+	Contact(void);
+	~Contact(void);
 
-	std::string &getFirstName();
-	void setFirstName(std::string &value);
+	std::string getFirstName() const;
+	void setFirstName(std::string& value);
 
-	std::string &getLastName();
-	void setLastName(std::string &value);
+	std::string getLastName() const;
+	void setLastName(std::string& value);
 
-	std::string &getNickname();
-	void setNickname(std::string &value);
+	std::string getNickname() const;
+	void setNickname(std::string& value);
 
-	std::string &getPhoneNumber();
-	void setPhoneNumber(std::string &value);
+	std::string getPhoneNumber() const;
+	void setPhoneNumber(std::string& value);
 
-	std::string &getDarkestSecret();
-	void setDarkestSecret(std::string &value);
+	std::string getDarkestSecret() const;
+	void setDarkestSecret(std::string& value);
 
 private:
 	std::string _first_name;

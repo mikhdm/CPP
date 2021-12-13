@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 03:42:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 05:21:09 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/13 05:30:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@
 #include "Contact.hpp"
 
 class PhoneBook {
+
 public:
+	PhoneBook(void);
+	~PhoneBook(void);
 
 private:
 	Contact _contacts[CONTACT_COUNT];
