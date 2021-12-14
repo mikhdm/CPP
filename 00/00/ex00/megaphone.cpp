@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/11 21:34:40 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 11:12:39 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 21:09:17 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 {
 	if (argc == 1)
 	{
+		std::cout<<'\a';
 		std::cout<<"* LOUD AND UNBEARABLE FEEDBACK NOISE *"<<std::endl;
 		return (EXIT_SUCCESS);
 	}
