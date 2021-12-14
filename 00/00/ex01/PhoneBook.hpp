@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 03:42:25 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 13:03:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ private:
 	bool		_overflow;
 };
 
+
 std::ostream& operator<<(std::ostream& o, const PhoneBook& phonebook);
 
 #endif // PHONEBOOK_H
+

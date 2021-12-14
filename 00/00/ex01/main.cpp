@@ -6,32 +6,49 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 21:57:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 12:30:08 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
+
+#include <cmath>
 #include <iostream>
 
-static void showprompt(std::string str) {
-	std::cout<<SH_COLOR_GREEN<<str<<SH_COLOR_RESET;
+
+static void showmessage(std::string str, bool endl) {
+		std::cout<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<str<<SH_COLOR_RESET;
+		if (endl)
+			std::cout<<std::endl;
 }
 
+
 static void showerror(std::string str) {
-	std::cout<<SH_COLOR_BOLD<<SH_COLOR_RED<<str
+	std::cerr<<SH_COLOR_BOLD<<SH_COLOR_RED<<str
 		<<SH_COLOR_RESET<<std::endl;
 }
 
+
 static void showexit(void) {
-	std::cout<<std::endl<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
+	std::cout<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
 }
 
-static bool iseof(bool check)
-{
+
+static bool iseof(bool check) {
 	if (check)
 		showexit();
 	return check;
 }
+
+
+static bool digits_only(std::string const& str) {
+	for (size_t i = 0; i < str.length(); ++i) {
+		if (!std::isdigit(str[i]))
+			return (false);
+	}
+	return (true);
+}
+
 
 static void	add(PhoneBook &phonebook) {
 	Contact contact;
@@ -45,7 +62,7 @@ static void	add(PhoneBook &phonebook) {
 	prompt = "add (first name)> ";
 	while (i < nreads)
 	{
-		showprompt(prompt);
+		showmessage(prompt, false);
 		std::getline(std::cin, buff);
 		if (iseof(std::cin.eof())) {
 			exit(EXIT_SUCCESS);
@@ -80,13 +97,44 @@ static void	add(PhoneBook &phonebook) {
 	return;
 }
 
+static void search(PhoneBook& phonebook) {
+	std::string buff;
+	double			dvalue;
+	Contact			contact;
+
+	while (true) {
+		showmessage("index> ", false);
+		std::getline(std::cin, buff);
+		if (iseof(std::cin.eof())) {
+			exit(EXIT_SUCCESS);
+		}
+		if (buff.empty())
+			continue ;
+		if (!digits_only(buff)) {
+			showerror("Enter valid value");
+			continue ;
+		}
+		dvalue = std::strtod(buff.c_str(), NULL);
+		if (dvalue == HUGE_VAL) {
+			showerror("Enter valid value");
+			continue ;
+		}
+		contact = phonebook.search(static_cast<size_t>(dvalue));
+		if (!contact.getFallback()) {
+			std::cout<<contact;
+			break ;
+		}
+		showerror("Contact not found");
+		break ;
+	}
+}
+
 int main(void) {
 	std::string buff;
 	PhoneBook		phonebook;
 	
 	while (true) {
-		showprompt(PROMPT);
-
+		showmessage(PROMPT, false);
 		std::getline(std::cin, buff);
 		if (iseof(std::cin.eof())) {
 			break ;
@@ -103,8 +151,13 @@ int main(void) {
 			continue ;
 		}
 		else if (buff == "SEARCH") {
-			/* search(phonebook); */
+			if (phonebook.getSize() == 0)
+			{
+				showmessage("Phonebook is empty yet", true);
+				continue ;
+			}
 			std::cout<<phonebook;
+			search(phonebook);
 			continue ;
 		}
 		else if (buff == "EXIT") {
@@ -114,3 +167,4 @@ int main(void) {
 	}
 	return (EXIT_SUCCESS);
 }
+

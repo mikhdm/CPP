@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 03:41:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 12:59:18 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 #include <iomanip>
 #include <iostream>
 
+
 class Contact {
 
-public:
+ public:
 	Contact(void);
 	~Contact(void);
 
@@ -41,7 +42,7 @@ public:
 	bool getFallback(void) const;
 	void setFallback(bool value);
 
-private:
+ private:
 	std::string _first_name;
 	std::string _last_name;
 	std::string _nickname;
@@ -50,6 +51,8 @@ private:
 	bool				_fallback;
 };
 
+
 std::ostream& operator<<(std::ostream& o, Contact const& contact);
 
 #endif // CONTACT_H
+

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 05:23:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 13:16:30 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,16 @@
 
 PhoneBook::PhoneBook(void) : _size(0), _overflow(false) {}
 
+
 PhoneBook::~PhoneBook(void) {}
+
 
 size_t PhoneBook::getSize(void) const {
 	if (_overflow)
 		return (PHONEBOOK_CAPACITY);
 	return _size;
 }
+
 
 void			PhoneBook::add(Contact contact) {
 	if (_size == PHONEBOOK_CAPACITY)
@@ -38,6 +41,7 @@ void			PhoneBook::add(Contact contact) {
 	_contacts[_size] = contact;
 	++_size;
 }
+
 
 Contact PhoneBook::search(size_t index) const {
 	Contact empty;
@@ -52,7 +56,7 @@ Contact PhoneBook::search(size_t index) const {
 }
 
 
-std::string truncate(std::string str) { 
+static std::string truncate(std::string str) { 
 	std::string copy;
 	if (str.length() >= PHONEBOOK_COLSIZE)
 	{
@@ -63,6 +67,7 @@ std::string truncate(std::string str) {
 	}
 	return str;
 }
+
 
 std::ostream& operator<<(std::ostream& o, PhoneBook const& phonebook) {
 	Contact contact;
