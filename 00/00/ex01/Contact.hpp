@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 03:41:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 19:57:53 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:59:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define CONTACT_H
 
 #include <string>
+#include <iomanip>
+#include <iostream>
 
 class Contact {
 
@@ -21,20 +23,23 @@ public:
 	Contact(void);
 	~Contact(void);
 
-	std::string getFirstName() const;
+	std::string getFirstName(void) const;
 	void setFirstName(std::string& value);
 
-	std::string getLastName() const;
+	std::string getLastName(void) const;
 	void setLastName(std::string& value);
 
-	std::string getNickname() const;
+	std::string getNickname(void) const;
 	void setNickname(std::string& value);
 
-	std::string getPhoneNumber() const;
+	std::string getPhoneNumber(void) const;
 	void setPhoneNumber(std::string& value);
 
-	std::string getDarkestSecret() const;
+	std::string getDarkestSecret(void) const;
 	void setDarkestSecret(std::string& value);
+
+	bool getFallback(void) const;
+	void setFallback(bool value);
 
 private:
 	std::string _first_name;
@@ -42,6 +47,9 @@ private:
 	std::string _nickname;
 	std::string _phone_number;
 	std::string _darkest_secret;
+	bool				_fallback;
 };
+
+std::ostream& operator<<(std::ostream& o, Contact const& contact);
 
 #endif // CONTACT_H

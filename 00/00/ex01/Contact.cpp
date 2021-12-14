@@ -6,14 +6,26 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 05:23:27 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 06:59:15 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:59:25 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Contact.hpp"
 
-Contact::Contact(void) {}
+#include <iostream>
+
+Contact::Contact(void) : _fallback(false) {}
 Contact::~Contact(void) {}
+
+std::ostream& operator<<(std::ostream& o, Contact const& contact) {
+	std::cout
+		<<"First name: "<<contact.getFirstName()<<std::endl
+		<<"Last name: "<<contact.getLastName()<<std::endl
+		<<"Nickname: "<<contact.getNickname()<<std::endl
+		<<"Phone number: "<<contact.getPhoneNumber()<<std::endl
+		<<"Darkest secret: "<<contact.getDarkestSecret()<<std::endl;
+	return o;
+}
 
 std::string Contact::getFirstName() const {
 	return _first_name;
@@ -55,3 +67,10 @@ void Contact::setDarkestSecret(std::string& value) {
 	_darkest_secret = value;
 }
 
+bool Contact::getFallback(void) const {
+	return _fallback;
+}
+
+void Contact::setFallback(bool value) {
+	_fallback = value;
+}

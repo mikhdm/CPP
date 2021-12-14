@@ -6,96 +6,110 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 21:57:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/13 23:34:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 12:30:08 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PhoneBook.hpp"
 #include <iostream>
 
-# define ST_BASE 0
-# define ST_ADD	 1
-# define ST_SEARCH 2
-
-void	setprompt(std::string str) {
+static void showprompt(std::string str) {
 	std::cout<<SH_COLOR_GREEN<<str<<SH_COLOR_RESET;
 }
 
-void	add() {
-	Contact			contact;
+static void showerror(std::string str) {
+	std::cout<<SH_COLOR_BOLD<<SH_COLOR_RED<<str
+		<<SH_COLOR_RESET<<std::endl;
+}
 
-	std::string buff;
+static void showexit(void) {
+	std::cout<<std::endl<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
+}
+
+static bool iseof(bool check)
+{
+	if (check)
+		showexit();
+	return check;
+}
+
+static void	add(PhoneBook &phonebook) {
+	Contact contact;
+	std::string buff;	
 	std::string prompt;
+	size_t	i;
+	size_t	nreads;
 
-	while (true) {
-		std::cout<<prompt;
+	i = 0;	
+	nreads = 5;
+	prompt = "add (first name)> ";
+	while (i < nreads)
+	{
+		showprompt(prompt);
 		std::getline(std::cin, buff);
-		if (std::cin.eof()) {
-			std::cout<<std::endl<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
-			break ;
+		if (iseof(std::cin.eof())) {
+			exit(EXIT_SUCCESS);
 		}
+		if (buff.empty())
+			continue ;
 
+		switch (i) {
+			case 0:
+				contact.setFirstName(buff);
+				prompt = "add (last name)> ";
+				break;
+			case 1:
+				contact.setLastName(buff);
+				prompt = "add (nickname)> ";
+				break;
+			case 2:
+				contact.setNickname(buff);
+				prompt = "add (phone number)> ";
+				break;
+			case 3:
+				contact.setPhoneNumber(buff);
+				prompt = "add (darkest secret)> ";
+				break;
+			case 4:
+				contact.setDarkestSecret(buff);
+				break;
+		}
+		++i;
 	}
-
-	if (index == 1)
-		contact.setFirstName(buff);
-	else if (index == 2)
-		contact.setLastName(buff);
-	else if (index == 3)
-		contact.setNickname(buff);
-	else if (index == 4)
-		contact.setPhoneNumber(buff);
-	else if (index == 5)
-		contact.setDarkestSecret(buff);
+	phonebook.add(contact);
+	return;
 }
 
 int main(void) {
-
 	std::string buff;
 	PhoneBook		phonebook;
-	Contact			contact;
-	int					state;
-	std::string	prompt;
-	int					index;
 	
-	state = ST_BASE;
-	prompt = PROMPT;
 	while (true) {
-		setprompt(str);
+		showprompt(PROMPT);
 
 		std::getline(std::cin, buff);
-		if (std::cin.eof()) {
-			std::cout<<std::endl<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
+		if (iseof(std::cin.eof())) {
 			break ;
 		}
 		if (buff.empty())
 				continue ;
 
-		if (state == ST_BASE) {
-				if ((buff != "EXIT") && (buff != "ADD") && (buff != "SEARCH")) {
-					std::cout<<SH_COLOR_BOLD<<SH_COLOR_RED<<"Enter valid command"
-						<<SH_COLOR_RESET<<std::endl;
-					continue ;
-				}
-				if (buff == "ADD") {
-					prompt = "add (first name)> ";
-					state = ST_ADD;
-					continue ;
-				}
-				else if (buff == "SEARCH") {
-					prompt = "search> ";
-					state = ST_SEARCH;
-					continue ;
-				}
-				else if (buff == "EXIT") {
-					std::cout<<SH_COLOR_BOLD<<SH_COLOR_GREEN<<"Exit"<<SH_COLOR_RESET<<std::endl;
-					break ;
-				}
-		} else if (state == ST_ADD) {
-			contact = readContact();
-			phonebook.add(contact);
-		} else if (state == ST_SEARCH) {
-			phonebook.search(index);
+		if ((buff != "EXIT") && (buff != "ADD") && (buff != "SEARCH")) {
+			showerror("Enter valid command");
+			continue ;
+		}
+		if (buff == "ADD") {
+			add(phonebook);
+			continue ;
+		}
+		else if (buff == "SEARCH") {
+			/* search(phonebook); */
+			std::cout<<phonebook;
+			continue ;
+		}
+		else if (buff == "EXIT") {
+			showexit();
+			break ;
 		}
 	}
 	return (EXIT_SUCCESS);
