@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:50:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 21:01:17 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 21:03:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,8 @@ void Account::_displayTimestamp( void ) {
 	std::tm* ptime = std::localtime(&time);
 
 	std::strftime(buff, 16, "%Y%m%d_%H%M%S", ptime);
-	/* std::cout<<"CURR TIME: "<<buff<<std::endl; */
 
-	std::cout<<"["<<"19920104_091532"<<"]"<<" ";
+	std::cout<<"["<<buff<<"]"<<" ";
 }
 
 
