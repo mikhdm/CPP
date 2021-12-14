@@ -6,20 +6,31 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:50:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 20:46:57 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 21:01:17 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Account.hpp"
 
+#include <ctime>
 #include <iostream>
+
 
 int Account::_nbAccounts = 0;
 int Account::_totalAmount = 0;
 int Account::_totalNbDeposits = 0;
 int Account::_totalNbWithdrawals = 0;
 
+
 void Account::_displayTimestamp( void ) {
+
+	char buff[16];
+	std::time_t time = std::time(nullptr);
+	std::tm* ptime = std::localtime(&time);
+
+	std::strftime(buff, 16, "%Y%m%d_%H%M%S", ptime);
+	/* std::cout<<"CURR TIME: "<<buff<<std::endl; */
+
 	std::cout<<"["<<"19920104_091532"<<"]"<<" ";
 }
 
