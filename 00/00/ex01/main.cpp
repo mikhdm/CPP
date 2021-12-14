@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 21:57:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 16:47:15 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 20:52:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ static void search(PhoneBook& phonebook) {
 			showerror("Enter valid value");
 			continue ;
 		}
-		dvalue = std::strtod(buff.c_str(), NULL);
+		dvalue = std::strtod(buff.c_str(), nullptr);
 		if (dvalue == HUGE_VAL) {
 			showerror("Enter valid value");
 			continue ;
