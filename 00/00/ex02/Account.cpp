@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/14 16:50:52 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/14 21:03:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/14 21:05:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@ int Account::_totalNbWithdrawals = 0;
 
 
 void Account::_displayTimestamp( void ) {
-
 	char buff[16];
 	std::time_t time = std::time(nullptr);
 	std::tm* ptime = std::localtime(&time);
 
 	std::strftime(buff, 16, "%Y%m%d_%H%M%S", ptime);
-
 	std::cout<<"["<<buff<<"]"<<" ";
 }
 
@@ -53,6 +51,7 @@ Account::~Account() {
 	Account::_nbAccounts--;
 	Account::_totalNbDeposits -= _nbDeposits;
 	Account::_totalNbWithdrawals -= _nbWithdrawals;
+
 	Account::_displayTimestamp();
 	std::cout<<"index:"<<_accountIndex<<";"
 		<<"amount:"<<checkAmount()<<";"<<"closed"
@@ -140,6 +139,7 @@ bool Account::makeWithdrawal( int withdrawal ) {
 	++_totalNbWithdrawals;
 	_amount -= withdrawal;	
 	_totalAmount -= withdrawal;
+
 	std::cout<<withdrawal<<";"
 		<<"amount:"<<checkAmount()<<";"
 		<<"nb_withdrawals:"<<_nbWithdrawals
