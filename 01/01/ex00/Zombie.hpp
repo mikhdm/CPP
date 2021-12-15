@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:31:27 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 15:23:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/15 16:24:06 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
 
-#include <string>
+# include <string>
 
 # define SH_COLOR_WHITE		"\033[37m"
 # define SH_COLOR_BLUE		"\033[34m"
