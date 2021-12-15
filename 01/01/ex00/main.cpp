@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 14:38:05 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 14:55:14 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:27:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 int main(void) {
   Zombie *z = newZombie("A-Virus");
   randomChump("C-Virus");
-  delete z;
+  if (z)
+    delete z;
   return (EXIT_SUCCESS);
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 13:31:27 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 14:38:02 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/15 15:23:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,3 +40,4 @@ Zombie *newZombie(std::string name);
 void randomChump(std::string name);
 
 #endif // ZOMBIE_H
+
