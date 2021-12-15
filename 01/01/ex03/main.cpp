@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:24:57 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 18:20:14 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/15 18:24:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 
 
 int main(void) {
-
    {
       Weapon club = Weapon("crude spiked club");
       HumanA bob("Bob", club);
@@ -34,7 +33,6 @@ int main(void) {
       club.setType("some other type of club");
       jim.attack();
    }
-
    return (EXIT_SUCCESS);
 }
 
