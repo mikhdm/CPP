@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 16:15:09 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 16:53:23 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/15 18:25:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 
 HumanA::HumanA(std::string const& name, Weapon const& weapon) : _name(name),
-                                                          _weapon(weapon) {}
+                                                                _weapon(weapon) {}
 
 
 HumanA::~HumanA() {}
