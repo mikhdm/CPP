@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 19:03:35 by rmander           #+#    #+#              #
-#    Updated: 2021/12/16 18:54:29 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/16 19:10:38 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = replace
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -fsanitize=address -fsanitize=undefined -Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror
 
 SRCS = ./main.cpp
 
