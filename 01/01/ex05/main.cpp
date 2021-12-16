@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 20:26:34 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/16 20:28:52 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/16 22:16:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,8 @@ int main(void) {
   karen.complain("WARNING");
   karen.complain("DEBUG");
   karen.complain("ERROR");
+
+  karen.complain("");
+
   return (EXIT_SUCCESS);
 }
