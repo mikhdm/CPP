@@ -1,7 +1,7 @@
 #!/bin/bash
 
-PROGRAM='../replace'
-FILES=('bear' 'cat' 'dog' 'elephant' 'hydra' 'otter')
+PROGRAM='./replace'
+FILES=('./tests/bear' './tests/cat' './tests/dog' './tests/elephant' './tests/hydra' './tests/otter')
 CASES=('r RRR' 'cat bro' 'dog buldog' 'ele oops' 'dra XXX' 'tt yst') 
 
 for i in ${!FILES[@]}; do

@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 19:03:35 by rmander           #+#    #+#              #
-#    Updated: 2021/12/16 18:51:07 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/16 18:53:35 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 
-test:
+test: all
+	@./tests/run
 
 re: fclean all
 
