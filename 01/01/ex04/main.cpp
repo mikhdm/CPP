@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:03:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/16 18:10:08 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/16 19:08:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,13 @@ static void read(std::string const& filename, std::string& buff) {
 static void replace(std::string const& from, std::string const& to,
               std::string const& filename, std::string& buff) {
   std::ofstream ofs;
+  size_t start = 0;
+  size_t pos = 0;
+
   ofs.open(filename + ".replace", std::ofstream::out);
   if (ofs.fail())
     error("Error writing file", EXIT_FAILURE);
 
-  size_t start = 0;
-  size_t pos = 0;
-  std::string tmp;
   while (true) {
     pos = buff.find(from, start);
     if (pos == std::string::npos)
