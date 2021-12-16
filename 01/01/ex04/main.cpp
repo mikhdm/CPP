@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:03:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/15 20:13:22 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/16 14:15:10 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,55 +17,61 @@
 
 # define ARGC_COUNT 4
 
+
+static void error(std::string const& message, int code) {
+  std::cerr<<message<<std::endl;
+  std::exit(code); 
+}
+
+
+static void read(std::string const& filename, std::string& buff) {
+  std::ifstream ifs;
+  ifs.open(filename, std::ifstream::in);
+  if (ifs.fail())
+    error("Error reading file", EXIT_FAILURE);
+
+  std::stringstream* ss = new std::stringstream;
+  *ss << ifs.rdbuf();
+  buff = ss->str();
+  delete ss;
+  ifs.close();
+}
+
+
+static void replace(std::string const& from, std::string const& to,
+              std::string const& filename, std::string& buff) {
+  std::ofstream ofs;
+  ofs.open(filename + ".replace", std::ofstream::out);
+  if (ofs.fail())
+    error("Error writing file", EXIT_FAILURE);
+  (void) to;
+  size_t  pos = buff.find(from);
+  if (pos == std::string::npos)
+  {
+    ofs << buff;
+    ofs.close();
+    return ;
+  }
+  ofs.close();
+}
+
+
 int main(int argc, char **argv) {
   if (argc != ARGC_COUNT)
-  {
-    std::cerr<<"Incorrect number of arguments"<<std::endl;
-    return (EXIT_FAILURE);
-  }
+    error("Incorrect number of arguments", EXIT_FAILURE);
 
   std::string infile = argv[1];
   std::string from = argv[2];
   std::string to = argv[3];
+
   if (infile.empty())
-  {
-    std::cerr<<"Filename cannot be empty"<<std::endl;
-    return (EXIT_FAILURE);
-  }
+    error("Filename cannot be empty", EXIT_FAILURE);
   if (from.empty() || to.empty())
-  {
-    std::cerr<<"Patterns cannot be empty"<<std::endl;
-    return (EXIT_FAILURE);
-  }
+    error("Patterns cannot be empty", EXIT_FAILURE);
 
-  std::ifstream ifs;
-  std::ofstream ofs;
-
-  ifs.open(infile, std::ifstream::in);
-  if (ifs.fail())
-  {
-    std::cerr<<"File does not exist"<<std::endl;
-    return (EXIT_FAILURE);
-  }
-
-  std::stringstream *ss = new std::stringstream;
   std::string* buff = new std::string;
-  *ss << ifs.rdbuf();
-  *buff = ss->str();
-  delete ss;
-
-  size_t pos = buff->find(from);
-  ofs.open(infile + ".replace", std::ofstream::out);
-  if (pos == std::string::npos)
-  {
-    ofs << *buff;
-    delete buff;
-    ifs.close();
-    ofs.close();
-    return (EXIT_SUCCESS);
-  }
+  read(infile, *buff);
+  replace(from, to, infile, *buff);
   delete buff;
-  ofs.close();
-  ifs.close();
   return (EXIT_SUCCESS);
 }
