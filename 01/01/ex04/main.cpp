@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 19:03:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/16 14:15:10 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/16 17:49:57 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,14 +44,19 @@ static void replace(std::string const& from, std::string const& to,
   ofs.open(filename + ".replace", std::ofstream::out);
   if (ofs.fail())
     error("Error writing file", EXIT_FAILURE);
-  (void) to;
-  size_t  pos = buff.find(from);
-  if (pos == std::string::npos)
-  {
-    ofs << buff;
-    ofs.close();
-    return ;
+
+  size_t start = 0;
+  size_t pos = 0;
+  std::string tmp;
+  while (true) {
+    pos = buff.find(from, start);
+    if (pos == std::string::npos)
+      break ;
+    ofs << buff.substr(start, pos - start);
+    ofs << to;
+    start = from.length() + pos;
   }
+  ofs << buff.substr(start, std::string::npos);
   ofs.close();
 }
 
