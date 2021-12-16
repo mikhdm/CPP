@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 19:03:35 by rmander           #+#    #+#              #
-#    Updated: 2021/12/16 14:14:54 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/16 18:51:07 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,9 +33,12 @@ $(NAME): $(OBJS)
 clean:
 	rm -f $(OBJS)
 	rm -f $(DEPS)
+	rm -f tests/*.replace
 
 fclean: clean
 	rm -f $(NAME)
+
+test:
 
 re: fclean all
 

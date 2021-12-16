@@ -1,17 +1,23 @@
 #!/bin/bash
 
-./replace otter tt yst
+PROGRAM='../replace'
 FILES=('bear' 'cat' 'dog' 'elephant' 'hydra' 'otter')
-CASES=('r RRR', 'cat bro', 'dog buldog', 'ele oops', 'dra XXX', 'tt yst') 
+CASES=('r RRR' 'cat bro' 'dog buldog' 'ele oops' 'dra XXX' 'tt yst') 
 
 for i in ${!FILES[@]}; do
-  from=${CASES[$i]} | cut -d ' ' -f 1
-  to=${CASES[$i]} | cut -d ' ' -f 1
-  ./replace ${FILES[$i]} $from $to 
+  case=${CASES[$i]}
+  file=${FILES[$i]}
+  from=$(cut -d ' ' -f 1 <(echo $case))
+  to=$(cut -d ' ' -f 2 <(echo $case))
+
+  echo "$file: $from -> $to"
+
+  ${PROGRAM} ${FILES[$i]} $from $to 
   DIFF=`diff ${FILES[$i]}.replace ${FILES[$i]}.gauge`
   if [ ! -z "$DIFF" ]; then
-    echo "${FILES[$i]}: $from -> $to wrong" >&2 
+    printf '\033[31m'"ERROR: $file differs"'\033[m''\n'
     exit 1
   fi
 done
-echo "OK"
+
+printf '\033[32m''OK''\033[m''\n'
