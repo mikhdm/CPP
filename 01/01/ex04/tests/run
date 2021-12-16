@@ -1,0 +1,17 @@
+#!/bin/bash
+
+./replace otter tt yst
+FILES=('bear' 'cat' 'dog' 'elephant' 'hydra' 'otter')
+CASES=('r RRR', 'cat bro', 'dog buldog', 'ele oops', 'dra XXX', 'tt yst') 
+
+for i in ${!FILES[@]}; do
+  from=${CASES[$i]} | cut -d ' ' -f 1
+  to=${CASES[$i]} | cut -d ' ' -f 1
+  ./replace ${FILES[$i]} $from $to 
+  DIFF=`diff ${FILES[$i]}.replace ${FILES[$i]}.gauge`
+  if [ ! -z "$DIFF" ]; then
+    echo "${FILES[$i]}: $from -> $to wrong" >&2 
+    exit 1
+  fi
+done
+echo "OK"
