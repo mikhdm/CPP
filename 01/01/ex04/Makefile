@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 19:03:35 by rmander           #+#    #+#              #
-#    Updated: 2021/12/16 19:10:38 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/16 19:11:40 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,4 +43,4 @@ test: all
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re test
