@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 19:29:26 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/17 21:14:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/17 21:16:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,8 @@ size_t Karen::index(std::string level) const {
 void Karen::complain(std::string lvl) {
   void (Karen::*f[])(void) = {&Karen::debug, &Karen::info, &Karen::warning, &Karen::error};
   KarenLevel l = level(lvl);
-  if (_level == kLevelUnknown || l == kLevelUnknown)
+  if (_level == kLevelUnknown || l == kLevelUnknown || l < _level)
     return ;
-  if (l >= _level)
-    (this->*f[l])();
+  (this->*f[l])();
 }
 
