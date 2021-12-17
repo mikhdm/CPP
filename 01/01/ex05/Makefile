@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/16 19:15:44 by rmander           #+#    #+#              #
-#    Updated: 2021/12/16 19:29:23 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/17 21:19:59 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = karen
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic
 
 SRCS = ./main.cpp \
 	   ./Karen.cpp
