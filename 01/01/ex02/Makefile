@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 15:41:02 by rmander           #+#    #+#              #
-#    Updated: 2021/12/15 15:57:17 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/17 21:22:26 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = brain
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic
 
 SRCS = ./main.cpp
 
