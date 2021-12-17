@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/16 19:31:29 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/16 20:26:58 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/17 21:08:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,20 +24,33 @@
 # define SH_COLOR_RESET		"\033[m"
 # define SH_COLOR_BOLD		"\033[1m"
 
+enum KarenLevel {
+  kLevelDebug = 0,
+  kLevelInfo ,
+  kLevelWarning,
+  kLevelError,
+  kLevelUnknown
+}; 
 
 class Karen {
  public:
-  Karen(void);
+  Karen(std::string level);
   ~Karen(void);
 
   void complain(std::string level);
+  void unknown(void);
+  KarenLevel getLevel(void) const;
+  void setLevel(std::string lvl);
 
  private:
+  Karen(void);
   size_t index(std::string level) const;
   void debug(void);
   void info(void);
   void warning(void);
   void error(void);
+  KarenLevel level(std::string level) const;
+  KarenLevel _level;
 };
 
 
