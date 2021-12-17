@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/15 15:58:49 by rmander           #+#    #+#              #
-#    Updated: 2021/12/15 18:21:39 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/17 21:21:43 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = human
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic
 
 SRCS = ./main.cpp \
 	   ./HumanA.cpp \
