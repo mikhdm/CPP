@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 00:17:35 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 00:22:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ Fixed::~Fixed(void) {
 
 
 int Fixed::getRawBits(void) const {
-  log("getRawBits member function called");
+  Fixed::log("getRawBits member function called");
   return _value;
 }
 
