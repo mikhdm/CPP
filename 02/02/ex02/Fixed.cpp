@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 21:35:27 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 22:30:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ Fixed::Fixed(void) : _value(0) {}
 
 bool Fixed::valid(int const value) const {
   long const v = static_cast<long>(value);
-  if (v < Fixed::_kIntMin || v > Fixed::_kIntMax) 
+  if (v < Fixed::_kIntMin || v > Fixed::_kIntMax)
     return (false);
   return (true);
 }
@@ -96,7 +96,8 @@ int Fixed::toInt(void) const {
 
 
 float Fixed::toFloat(void) const {
-  return static_cast<float>(_value) / (1 << Fixed::_bits);
+  float v = static_cast<float>(_value); 
+  return v / (1 << Fixed::_bits);
 }
 
 
@@ -149,18 +150,23 @@ bool Fixed::operator==(Fixed const& rvalue) const {
 // Arithmetic operator overloading
 
 Fixed Fixed::operator+(Fixed const& rvalue) const {
-  return Fixed(_value + rvalue.getRawBits());
+  Fixed a;
+  a.setRawBits(_value + rvalue.getRawBits());
+  return a;
 }
 
 
 Fixed Fixed::operator-(Fixed const& rvalue) const {
-  return Fixed(_value - rvalue.getRawBits());
+  Fixed a;
+  a.setRawBits(_value - rvalue.getRawBits());
+  return a;
 }
 
 
 Fixed Fixed::operator*(Fixed const& rvalue) const {
-  float val = (_value * rvalue.getRawBits()) >> Fixed::_bits;
-  return Fixed(val);
+  Fixed a;
+  a.setRawBits((_value * rvalue.getRawBits()) >> Fixed::_bits);
+  return a;
 }
 
 
@@ -171,8 +177,10 @@ Fixed Fixed::operator/(Fixed const& rvalue) const {
     std::cerr << "Division by zero" << std::endl;
     return *this;
   }
+  Fixed a;
   float val = (static_cast<float>(_value) / rvalue.getRawBits()) * (1 << Fixed::_bits);
-  return Fixed(val); 
+  a.setRawBits(val);
+  return a;
 }
 
 

@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/18 02:53:11 by rmander           #+#    #+#              #
-#    Updated: 2021/12/18 02:53:50 by rmander          ###   ########.fr        #
+#    Updated: 2021/12/20 21:41:50 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fixed
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -fno-elide-constructors
 
 SRCS = ./main.cpp \
 	   ./Fixed.cpp
