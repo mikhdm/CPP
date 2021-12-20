@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:54:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 02:44:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 17:32:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # define BITS_COUNT     8
 # define FIXED_INT_MAX  8388607
-# define FIXED_INT_MIN -8388608   
+# define FIXED_INT_MIN -8388608
 
 #include <string>
 #include <iostream>
@@ -27,7 +27,7 @@ class Fixed {
   Fixed(float const raw);
   Fixed(Fixed const& value);
   virtual ~Fixed(void);
-  Fixed& operator=(Fixed const& rvalue); 
+  Fixed& operator=(Fixed const& rvalue);
 
   int getRawBits(void) const;
   void setRawBits(int const raw);
@@ -39,6 +39,8 @@ class Fixed {
   static const int _bits;
   static int const _kIntMax;
   static int const _kIntMin;
+  bool valid(int const value) const;
+  bool valid(float const value) const;
 };
 
 
