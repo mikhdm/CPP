@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 18:14:08 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 21:35:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <cmath>
 #include <iostream>
 
-const int Fixed::_bits = BITS_COUNT;
-const int Fixed::_kIntMax = FIXED_INT_MAX; 
-const int Fixed::_kIntMin = FIXED_INT_MIN;
+int const Fixed::_bits = BITS_COUNT;
+int const Fixed::_kIntMax = FIXED_INT_MAX; 
+int const Fixed::_kIntMin = FIXED_INT_MIN;
 
 
 void Fixed::log(std::string const& message) {
@@ -25,9 +25,7 @@ void Fixed::log(std::string const& message) {
 }
 
 
-Fixed::Fixed(void) : _value(0) {
-  Fixed::log("Default constructor called");
-}
+Fixed::Fixed(void) : _value(0) {}
 
 
 bool Fixed::valid(int const value) const {
@@ -48,32 +46,33 @@ bool Fixed::valid(float const value) const {
 
 
 Fixed::Fixed(int const raw) : _value(0) {
-  log("Int constructor called");
   if (!valid(raw))
+  {
       std::cerr << "Fixed buffer overflow." << std::endl;
+      return ;
+  }
   _value = raw << Fixed::_bits;
 }
 
 
 Fixed::Fixed(float const raw) : _value(0) {
-  log("Float constructor called");
   if (!valid(raw))
+  {
     std::cerr << "Fixed buffer overflow." << std::endl;
+    return ;
+  }
   _value = static_cast<int>(roundf(raw * (1 << Fixed::_bits)));
 }
 
 
 Fixed::Fixed(Fixed const& instance) : _value(0) {
-  Fixed::log("Copy constructor called");
   if (this == &instance)
     return ;
   *this = instance;
 }
 
 
-Fixed::~Fixed(void) {
-  Fixed::log("Destructor called");
-}
+Fixed::~Fixed(void) {}
 
 
 int Fixed::getRawBits(void) const {
@@ -82,6 +81,11 @@ int Fixed::getRawBits(void) const {
 
 
 void Fixed::setRawBits(int const raw) {
+  if (!valid(raw))
+  {
+    std::cerr << "Fixed buffer overflow." << std::endl;
+    return ;
+  }
   _value = raw;
 }
 
@@ -97,7 +101,6 @@ float Fixed::toFloat(void) const {
 
 
 Fixed& Fixed::operator=(Fixed const& instance) {
-  Fixed::log("Assignation operator called");
   if (this == &instance)
     return *this;
   _value = instance.getRawBits();
@@ -106,9 +109,106 @@ Fixed& Fixed::operator=(Fixed const& instance) {
 
 
 std::ostream& operator<<(std::ostream& o, Fixed const& instance) {
-  std::cout << instance.toFloat(); 
+  std::cout << instance.toFloat();
   return o;
 }
 
 
 // Comparison operators overloading
+
+bool Fixed::operator<(Fixed const& rvalue) const {
+  return _value < rvalue.getRawBits();
+}
+
+
+bool Fixed::operator>(Fixed const& rvalue) const {
+  return rvalue < *this;
+}
+
+
+bool Fixed::operator<=(Fixed const& rvalue) const {
+  return !(*this > rvalue);
+}
+
+
+bool Fixed::operator>=(Fixed const& rvalue) const {
+  return !(*this < rvalue);
+}
+
+
+bool Fixed::operator!=(Fixed const& rvalue) const {
+  return !(*this == rvalue);
+}
+
+
+bool Fixed::operator==(Fixed const& rvalue) const {
+  return _value == rvalue.getRawBits();
+}
+
+
+// Arithmetic operator overloading
+
+Fixed Fixed::operator+(Fixed const& rvalue) const {
+  return Fixed(_value + rvalue.getRawBits());
+}
+
+
+Fixed Fixed::operator-(Fixed const& rvalue) const {
+  return Fixed(_value - rvalue.getRawBits());
+}
+
+
+Fixed Fixed::operator*(Fixed const& rvalue) const {
+  float val = (_value * rvalue.getRawBits()) >> Fixed::_bits;
+  return Fixed(val);
+}
+
+
+Fixed Fixed::operator/(Fixed const& rvalue) const {
+  int rval = rvalue.getRawBits();
+  if (rval == 0)
+  {
+    std::cerr << "Division by zero" << std::endl;
+    return *this;
+  }
+  float val = (static_cast<float>(_value) / rvalue.getRawBits()) * (1 << Fixed::_bits);
+  return Fixed(val); 
+}
+
+
+// Prefix increment
+
+Fixed& Fixed::operator++(void) {
+  setRawBits(_value + (1 << 1));
+  return *this;
+}
+
+
+// Postfix increment 
+
+Fixed Fixed::operator++(int zero) {
+  static_cast<void>(zero);
+
+  Fixed tmp = *this;
+  operator++();
+  return tmp;
+}
+
+
+// Prefix decrement
+
+Fixed& Fixed::operator--(void) {
+  setRawBits(_value - (1 << 1));
+  return *this;
+}
+
+
+// Postfix decrement
+Fixed Fixed::operator--(int zero) {
+  static_cast<void>(zero);
+
+  Fixed tmp = *this;
+  operator--();
+  return tmp;
+}
+

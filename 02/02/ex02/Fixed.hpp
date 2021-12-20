@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:54:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 18:14:17 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 21:34:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ class Fixed {
 
   // Comparison operators
   bool operator<(Fixed const& rvalue) const;
-  bool operator==(Fixed const& rvalue) const;
   bool operator>(Fixed const& rvalue) const;
   bool operator<=(Fixed const& rvalue) const; 
   bool operator>=(Fixed const& rvalue) const;
+  bool operator==(Fixed const& rvalue) const;
   bool operator!=(Fixed const& rvalue) const;
 
   // Arithmetic operators
@@ -44,10 +44,10 @@ class Fixed {
   Fixed operator/(Fixed const& rvalue) const;
 
   // Inrement / Decrement
-  Fixed& operator++(int);
-  Fixed operator++(void);
-  Fixed& operator--(int);
-  Fixed operator--(void);
+  Fixed operator++(int);
+  Fixed& operator++(void);
+  Fixed operator--(int);
+  Fixed& operator--(void);
 
   // Min / Max
   static Fixed& min(Fixed& l, Fixed& r); 
