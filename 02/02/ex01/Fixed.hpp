@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:54:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 17:46:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 18:14:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,5 @@ class Fixed {
 std::ostream& operator<<(std::ostream& o, Fixed const& instance);
 
 
-#endif
+#endif // FIXED_H
 

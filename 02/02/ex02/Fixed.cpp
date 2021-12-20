@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 18:11:49 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 18:14:08 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,3 +109,6 @@ std::ostream& operator<<(std::ostream& o, Fixed const& instance) {
   std::cout << instance.toFloat(); 
   return o;
 }
+
+
+// Comparison operators overloading
