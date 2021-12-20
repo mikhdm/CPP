@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:54:55 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 21:40:56 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 22:50:10 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # define BITS_COUNT     8
 # define FIXED_INT_MAX  8388607
 # define FIXED_INT_MIN -8388608
+
+# define SH_COLOR_WHITE		"\033[37m"
+# define SH_COLOR_BLUE		"\033[34m"
+# define SH_COLOR_PURPLE	"\033[35m"
+# define SH_COLOR_RED			"\033[31m"
+# define SH_COLOR_YELLOW	"\033[33m"
+# define SH_COLOR_GREEN		"\033[32m"
+# define SH_COLOR_RESET		"\033[m"
+# define SH_COLOR_BOLD		"\033[1m"
+
 
 #include <string>
 #include <iostream>

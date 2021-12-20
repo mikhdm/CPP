@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 22:30:00 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/20 23:28:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,23 +150,29 @@ bool Fixed::operator==(Fixed const& rvalue) const {
 // Arithmetic operator overloading
 
 Fixed Fixed::operator+(Fixed const& rvalue) const {
-  Fixed a;
-  a.setRawBits(_value + rvalue.getRawBits());
-  return a;
+  Fixed f;
+  f.setRawBits(_value + rvalue.getRawBits());
+  return f;
 }
 
 
 Fixed Fixed::operator-(Fixed const& rvalue) const {
-  Fixed a;
-  a.setRawBits(_value - rvalue.getRawBits());
-  return a;
+  Fixed f;
+  f.setRawBits(_value - rvalue.getRawBits());
+  return f;
 }
 
 
 Fixed Fixed::operator*(Fixed const& rvalue) const {
-  Fixed a;
-  a.setRawBits((_value * rvalue.getRawBits()) >> Fixed::_bits);
-  return a;
+  // TODO
+  Fixed f;
+  std::cout << "rvalue: " << rvalue.getRawBits() << std::endl;
+  std::cout << "value: " << _value << std::endl;
+
+  int value = _value * rvalue.getRawBits();
+  std::cout << "value "<< value << std::endl;
+
+  return f;
 }
 
 
@@ -187,7 +193,7 @@ Fixed Fixed::operator/(Fixed const& rvalue) const {
 // Prefix increment
 
 Fixed& Fixed::operator++(void) {
-  setRawBits(_value + (1 << 1));
+  setRawBits(_value + 1);
   return *this;
 }
 
@@ -206,7 +212,7 @@ Fixed Fixed::operator++(int zero) {
 // Prefix decrement
 
 Fixed& Fixed::operator--(void) {
-  setRawBits(_value - (1 << 1));
+  setRawBits(_value - 1);
   return *this;
 }
 
@@ -218,5 +224,25 @@ Fixed Fixed::operator--(int zero) {
   Fixed tmp = *this;
   operator--();
   return tmp;
+}
+
+
+Fixed& Fixed::min(Fixed& l, Fixed& r) {
+  return (l < r) ? l : r;
+}
+
+
+Fixed const& Fixed::min(Fixed const& l, Fixed const& r) {
+  return (l < r) ? l : r;
+}
+
+
+Fixed& Fixed::max(Fixed& l, Fixed& r) {
+  return (l < r) ? r : l;
+}
+
+
+Fixed const& Fixed::max(Fixed const& l, Fixed const& r) {
+  return (l < r) ? r : l;
 }
 
