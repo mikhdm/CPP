@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/21 22:35:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:39:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ ClapTrap::~ClapTrap(void) {
 }
 
 
-std::string ClapTrap::getName(void) const {
+std::string const& ClapTrap::getName(void) const {
   return _name;
 }
 
