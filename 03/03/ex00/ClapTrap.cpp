@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/21 22:39:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 00:27:06 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ ClapTrap& ClapTrap::operator=(ClapTrap const& instance) {
 
   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name
     << " has been assigned" << SH_COLOR_RESET << std::endl;
-
   return *this;
 }
 
