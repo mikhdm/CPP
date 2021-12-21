@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/21 21:57:27 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/21 22:35:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ unsigned int ClapTrap::getAttackDamage(void) const {
 
 void ClapTrap::attack(std::string const& target) {
   if (_hitPoints == 0) {
-    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)"; 
+    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)" << std::endl; 
     return ;
   }
   if (_energy == 0) {
@@ -97,13 +97,13 @@ void ClapTrap::takeDamage(unsigned int amount) {
   unsigned int prev = _hitPoints;
 
   if (_hitPoints == 0) {
-    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)"; 
+    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)" << std::endl;
     return ;
   }
   _hitPoints -= amount;
   _hitPoints = (_hitPoints < 0) ? 0 : _hitPoints;
   std::cout << SH_COLOR_GREEN
-    << "CL4P-TP: " << _name 
+    << "CL4P-TP: " << _name
     << " losts " << prev - _hitPoints << " points"
     << SH_COLOR_RESET << std::endl; 
 }
@@ -117,8 +117,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
     return ;
   }
   _hitPoints += amount;
-  _hitPoints = (_hitPoints > _kHitPointsMax) ? _kHitPointsMax : _hitPoints; 
+  _hitPoints = (_hitPoints > _kHitPointsMax) ? _kHitPointsMax : _hitPoints;
   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name << " was healed by "
-    << _hitPoints - prev 
+    << _hitPoints - prev
     << SH_COLOR_RESET << std::endl;
 }
