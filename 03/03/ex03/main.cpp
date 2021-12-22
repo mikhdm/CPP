@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 20:09:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 17:17:46 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:33:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void div(void) {
   std::cout << std::endl;
 }
 
-void info(ClapTrap const& instance) {
+void info(DiamondTrap const& instance) {
   std::cout << instance.getName() << " has "
     << instance.getHitPoints() << " HP, "
     << instance.getEnergy() << " Energy, "
@@ -31,17 +31,21 @@ void info(ClapTrap const& instance) {
 int main(void) {
   DiamondTrap dia_d("Bellatrix");
   DiamondTrap dia_s("Sirius");
-  ScavTrap scav_a("Ariadna");
 
   div();
   
   info(dia_d);
-  info(scav_a);
+  info(dia_s);
 
   div();
 
   dia_d.attack(dia_s.getName());
   dia_s.takeDamage(dia_d.getAttackDamage());
+
+  div();
+
+  info(dia_d);
+  info(dia_s);
 
   div();
 
@@ -52,7 +56,12 @@ int main(void) {
   div();
 
   DiamondTrap dia_d_copy(dia_d);
+
+  div();
+
   info(dia_d);
+
+  std::cout << "Copy: ";
   info(dia_d_copy);
 
   div();

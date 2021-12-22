@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:40:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 17:18:19 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:31:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ DiamondTrap::DiamondTrap(std::string const& name) : ClapTrap(name + "__clap__nam
 }
 
 
-DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName()),
-                                                        ScavTrap(instance.getName()),
-                                                        FragTrap(instance.getName()) {
+DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName() + "__clap__name"),
+                                                        ScavTrap(instance.getName() + "__clap__name"),
+                                                        FragTrap(instance.getName() + "__clap__name") {
     if (this == &instance)
         return ;
     *this = instance;
@@ -57,6 +57,11 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap const& instance) {
 DiamondTrap::~DiamondTrap(void) {
   std::cout << SH_COLOR_YELLOW << "DI4MOND-TP: " << _name
     << " has been destroyed" << SH_COLOR_RESET << std::endl;
+}
+
+
+std::string const& DiamondTrap::getName(void) const {
+  return _name;
 }
 
 

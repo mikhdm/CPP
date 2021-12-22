@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:41:01 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:47:20 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:28:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ class DiamondTrap : public ScavTrap, public FragTrap {
   DiamondTrap(DiamondTrap const& instance);
   virtual ~DiamondTrap(void);
   DiamondTrap& operator=(DiamondTrap const& instance);
+
+  std::string const& getName(void) const;
 
   void WhoAmI(void);
   using ScavTrap::attack;
