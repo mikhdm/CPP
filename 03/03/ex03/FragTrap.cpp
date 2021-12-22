@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:12:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:49:05 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:13:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,15 @@
 
 #include <iostream>
 
+const unsigned int FragTrap::_kHitPointsMax = 100;
+const unsigned int FragTrap::_kAttackDamage = 30; 
+
 
 FragTrap::FragTrap(std::string const& name) : ClapTrap(name) {
-  _hitPointsMax = 100;
-  _hitPoints = _hitPointsMax;
+  _hitPointsMax = FragTrap::_kHitPointsMax;
+  _hitPoints = FragTrap::_kHitPointsMax;
   _energy = 100;
-  _attackDamage = 30;
+  _attackDamage = FragTrap::_kAttackDamage;
   std::cout << SH_COLOR_BLUE << "FR4G-TP: " << _name
     << " has been created" << SH_COLOR_RESET << std::endl;
 }

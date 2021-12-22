@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:40:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:44:55 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:18:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,22 @@
 #include <iostream>
 
 
-DiamondTrap::DiamondTrap(std::string const& name) : 
-                                                    ClapTrap(name + "__clap__name"),
+DiamondTrap::DiamondTrap(std::string const& name) : ClapTrap(name + "__clap__name"),
                                                     ScavTrap(name + "__clap__name"),
                                                     FragTrap(name + "__clap__name"),
                                                     _name(name) {
+  _hitPointsMax = FragTrap::_kHitPointsMax;
+  _hitPoints = _hitPointsMax;
+  _energy = ScavTrap::_kEnergy;
+  _attackDamage = FragTrap::_kAttackDamage;
   std::cout << SH_COLOR_YELLOW << "DI4MOND-TP: " << _name
     << " has been created" << SH_COLOR_RESET << std::endl;
 }
 
 
-DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName() + "__clap__name"),
-                                                        ScavTrap(instance.getName() + "__clap__name"),
-                                                        FragTrap(instance.getName() + "__clap__name") {
+DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName()),
+                                                        ScavTrap(instance.getName()),
+                                                        FragTrap(instance.getName()) {
     if (this == &instance)
         return ;
     *this = instance;

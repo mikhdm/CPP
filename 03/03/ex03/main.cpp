@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 20:09:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:39:35 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:17:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,19 @@ int main(void) {
   div();
 
   dia_d.attack(dia_s.getName());
-  dia_s.takeDamage(dia_s.getAttackDamage());
+  dia_s.takeDamage(dia_d.getAttackDamage());
 
   div();
 
   dia_d.WhoAmI();
+  dia_d.highFivesGuys();
+  dia_d.guardGate();
+
+  div();
+
+  DiamondTrap dia_d_copy(dia_d);
+  info(dia_d);
+  info(dia_d_copy);
 
   div();
 

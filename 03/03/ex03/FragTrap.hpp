@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:12:54 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 12:45:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:11:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ class FragTrap : public virtual ClapTrap {
   void attack(std::string const& target);
   void highFivesGuys(void);
 
+ protected:
+  static const unsigned int _kHitPointsMax;
+  static const unsigned int _kAttackDamage;
+
  private:
   FragTrap(void);
-
 };
 
 

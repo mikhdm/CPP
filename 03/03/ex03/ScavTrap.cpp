@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:27:51 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:50:51 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 17:15:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 
 #include "ClapTrap.hpp"
 
+unsigned int const ScavTrap::_kEnergy = 50;
+
 
 ScavTrap::ScavTrap(std::string const& name) : ClapTrap(name) {
   _hitPointsMax = 100;
   _hitPoints = _hitPointsMax;
-  _energy = 50;
+  _energy = ScavTrap::_kEnergy;
   _attackDamage = 20;
   std::cout << SH_COLOR_PURPLE << "SC4V-TP: " << _name 
     << " has been created" << SH_COLOR_RESET << std::endl;

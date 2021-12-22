@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:16:11 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 16:51:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,6 @@ ClapTrap::ClapTrap(std::string const& name) : _name(name),
   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name
     << " has been created" << SH_COLOR_RESET << std::endl;
 }
-
-
-// Protected constructor to init derived member attributes
-
-/* ClapTrap::ClapTrap(std::string const& name, */
-/*     unsigned int const kHitPointsMax) : _name(name), */ 
-/*                                         _kHitPointsMax(kHitPointsMax) { */
-/*   _hitPoints = _kHitPointsMax; */
-/*   _energy = 10; */
-/*   _attackDamage = 0; */
-/*   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name */
-/*     << " has been created" << SH_COLOR_RESET << std::endl; */
-/* } */
 
 
 ClapTrap::ClapTrap(ClapTrap const& instance) {
