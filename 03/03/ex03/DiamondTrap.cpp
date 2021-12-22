@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:40:59 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 15:52:31 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 16:44:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 
 DiamondTrap::DiamondTrap(std::string const& name) : 
-                                                    ClapTrap(name + "__clap__name", 100),
+                                                    ClapTrap(name + "__clap__name"),
                                                     ScavTrap(name + "__clap__name"),
                                                     FragTrap(name + "__clap__name"),
                                                     _name(name) {
@@ -25,7 +25,7 @@ DiamondTrap::DiamondTrap(std::string const& name) :
 }
 
 
-DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName() + "__clap__name", 100),
+DiamondTrap::DiamondTrap(DiamondTrap const& instance) : ClapTrap(instance.getName() + "__clap__name"),
                                                         ScavTrap(instance.getName() + "__clap__name"),
                                                         FragTrap(instance.getName() + "__clap__name") {
     if (this == &instance)
@@ -41,6 +41,7 @@ DiamondTrap& DiamondTrap::operator=(DiamondTrap const& instance) {
     return *this;
   _name = instance.getName();
   _hitPoints = instance.getHitPoints();
+  _hitPointsMax = instance.getHitPointsMax();
   _energy = instance.getEnergy();
   _attackDamage = instance.getAttackDamage();
 
@@ -57,5 +58,7 @@ DiamondTrap::~DiamondTrap(void) {
 
 
 void DiamondTrap::WhoAmI(void) {
-
+  std::cout << SH_COLOR_YELLOW << 
+    "DI4MOND-TP: " << _name << ": " << ClapTrap::_name << " I am!" 
+    << SH_COLOR_RESET << std::endl;
 }
