@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 02:20:22 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 02:44:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ class ClapTrap {
  protected:
   ClapTrap(std::string const& name, unsigned int const kHitPointsMax,
       unsigned int energy, unsigned int attackDamage);
-  ClapTrap(unsigned int const kHitPointsMax);
+  ClapTrap(std::string const& name, unsigned int const kHitPointsMax);
   std::string _name;
   unsigned int _hitPoints;
   unsigned int _energy;

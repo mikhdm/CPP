@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 20:09:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 02:38:13 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 02:57:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ int main(void) {
   // Create copy via copy constructor
   ScavTrap gcopy(g);
 
+  std::cout << gcopy.getName() << " (copy)" << " has "
+    << gcopy.getHitPoints() << " HP, "
+    << gcopy.getEnergy() << " Energy, "
+    << gcopy.getAttackDamage() << " Attack damage" << std::endl;
+
+
   std::cout << std::endl;
 
   ScavTrap a("Ariadna");
@@ -65,8 +71,10 @@ int main(void) {
   
   std::cout << std::endl;
 
-  std::cout << a.getName()  << " has "
-    << a.getHitPoints() << " HP " << std::endl;
+  std::cout << a.getName() << " has "
+    << a.getHitPoints() << " HP, "
+    << a.getEnergy() << " Energy, "
+    << a.getAttackDamage() << " Attack damage" << std::endl;
 
   std::cout << std::endl;
   

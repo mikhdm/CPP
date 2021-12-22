@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:43:39 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 02:05:15 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 02:49:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ class ScavTrap : public ClapTrap {
   virtual ~ScavTrap(void);
   ScavTrap& operator=(ScavTrap const& instance);
 
+  void attack(std::string const& target);
   void guardGate(void);
 
  private:

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 02:20:28 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 02:47:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,12 @@ ClapTrap::ClapTrap(std::string const& name, unsigned int const kHitPointsMax,
 }
 
 
-ClapTrap::ClapTrap(unsigned int const kHitPointsMax) : _kHitPointsMax(kHitPointsMax) {}
+ClapTrap::ClapTrap(std::string const& name,
+    unsigned int const kHitPointsMax) : _name(name), 
+                                        _kHitPointsMax(kHitPointsMax) {
+  std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name
+    << " copy has been created" << SH_COLOR_RESET << std::endl;
+}
 
 
 ClapTrap::ClapTrap(ClapTrap const& instance) : _kHitPointsMax(10) {

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 00:27:51 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 02:25:33 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 02:59:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ScavTrap::ScavTrap(std::string const& name) : ClapTrap(name, 100, 50, 20) {
 }
 
 
-ScavTrap::ScavTrap(ScavTrap const& instance) : ClapTrap(100) {
+ScavTrap::ScavTrap(ScavTrap const& instance) : ClapTrap(instance.getName(), 100) {
   if (this == &instance)
     return ;
   *this = instance;
@@ -53,7 +53,26 @@ ScavTrap::~ScavTrap(void) {
 }
 
 
+void ScavTrap::attack(std::string const& target) {
+  if (_hitPoints == 0) {
+    std::cerr << "SC4V-TP: " << _name << " is dead (HP = 0)" << std::endl; 
+    return ;
+  }
+  if (_energy == 0) {
+    std::cerr << "SC4V-TP: " << _name << ": "
+      << "Try again later (Energy = 0)" << std::endl;
+    return ;
+  }
+  std::cout << SH_COLOR_PURPLE
+    << "SC4V-TP: " << _name << " attacks " << target << ", "
+    << "causing " << _attackDamage <<" points of damage (AAASHH!)"
+    SH_COLOR_RESET << std::endl;
+  --_energy;
+}
+
+
 void ScavTrap::guardGate(void) {
   std::cout << SH_COLOR_PURPLE << "SC4V-TP: " << _name
     << " has entered Gate keeper mode" << SH_COLOR_RESET << std::endl;
 }
+
