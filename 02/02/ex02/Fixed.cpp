@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/20 23:28:50 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/21 13:31:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,29 +150,20 @@ bool Fixed::operator==(Fixed const& rvalue) const {
 // Arithmetic operator overloading
 
 Fixed Fixed::operator+(Fixed const& rvalue) const {
-  Fixed f;
-  f.setRawBits(_value + rvalue.getRawBits());
-  return f;
+  float val = toFloat() + rvalue.toFloat(); 
+  return Fixed(val);
 }
 
 
 Fixed Fixed::operator-(Fixed const& rvalue) const {
-  Fixed f;
-  f.setRawBits(_value - rvalue.getRawBits());
-  return f;
+  float value = toFloat() - rvalue.toFloat();
+  return Fixed(value);
 }
 
 
 Fixed Fixed::operator*(Fixed const& rvalue) const {
-  // TODO
-  Fixed f;
-  std::cout << "rvalue: " << rvalue.getRawBits() << std::endl;
-  std::cout << "value: " << _value << std::endl;
-
-  int value = _value * rvalue.getRawBits();
-  std::cout << "value "<< value << std::endl;
-
-  return f;
+  float value = toFloat() * rvalue.toFloat();
+  return Fixed(value);
 }
 
 
