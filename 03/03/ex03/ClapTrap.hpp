@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:11 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 17:30:00 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 20:21:09 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class ClapTrap {
   virtual ~ClapTrap(void);
   ClapTrap& operator=(ClapTrap const& instance);
 
-  std::string const& getName(void) const;
+  virtual std::string const& getName(void) const;
   unsigned int getHitPoints(void) const;
   unsigned int getHitPointsMax(void) const;
   unsigned int getEnergy(void) const;

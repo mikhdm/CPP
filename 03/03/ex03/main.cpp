@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 20:09:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 17:33:45 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 20:22:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,11 @@ int main(void) {
 
   div();
 
+  dia_s.beRepaired(1);
+
+  div();
+
+  info(dia_s);
   info(dia_d);
 
   std::cout << "Copy: ";

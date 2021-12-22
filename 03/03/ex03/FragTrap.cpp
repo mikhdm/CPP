@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/22 12:12:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 17:13:29 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 20:17:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,17 +60,17 @@ FragTrap::~FragTrap(void) {
 
 void FragTrap::attack(std::string const& target) {
   if (_hitPoints == 0) {
-    std::cerr << "FR4G-TP: " << _name << " is dead (HP = 0)" << std::endl; 
+    std::cerr << "FR4G-TP: " << getName() << " is dead (HP = 0)" << std::endl; 
     return ;
   }
   if (_energy == 0) {
-    std::cerr << "FR4G-TP: " << _name << ": "
+    std::cerr << "FR4G-TP: " << getName() << ": "
       << "Try again later (Energy = 0)" << std::endl;
     return ;
   }
   std::cout << SH_COLOR_BLUE
-    << "FR4G-TP: " << _name << " attacks " << target << ", "
-    << "causing " << _name <<" points of damage (OOUUCHHHHH!)"
+    << "FR4G-TP: " << getName() << " attacks " << target << ", "
+    << "causing " << _attackDamage <<" points of damage (OOUUCHHHHH!)"
     SH_COLOR_RESET << std::endl;
   --_energy;
 }
@@ -78,7 +78,7 @@ void FragTrap::attack(std::string const& target) {
 
 void FragTrap::highFivesGuys(void) {
   std::cout << SH_COLOR_BLUE
-    << "FR4G-TP: " << _name << " asks: " << "Gimme FIIIIVE!"
+    << "FR4G-TP: " << getName() << " asks: " << "Gimme FIIIIVE!"
     SH_COLOR_RESET << std::endl;
 }
 

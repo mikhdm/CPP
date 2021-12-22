@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 16:51:35 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/22 20:21:08 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,16 +82,16 @@ unsigned int ClapTrap::getAttackDamage(void) const {
 
 void ClapTrap::attack(std::string const& target) {
   if (_hitPoints == 0) {
-    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)" << std::endl; 
+    std::cerr << "CL4P-TP: " << getName() << " is dead (HP = 0)" << std::endl; 
     return ;
   }
   if (_energy == 0) {
-    std::cerr << "CL4P-TP: " << _name << ": "
+    std::cerr << "CL4P-TP: " << getName() << ": "
       << "Try again later (Energy = 0)" << std::endl;
     return ;
   }
   std::cout << SH_COLOR_GREEN
-    << "CL4P-TP: " << _name << " attacks " << target << ", "
+    << "CL4P-TP: " << getName() << " attacks " << target << ", "
     << "causing " << _attackDamage <<" points of damage"
     SH_COLOR_RESET << std::endl;
   --_energy;
@@ -102,13 +102,13 @@ void ClapTrap::takeDamage(unsigned int amount) {
   unsigned int prev = _hitPoints;
 
   if (_hitPoints == 0) {
-    std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)" << std::endl;
+    std::cerr << "CL4P-TP: " << getName() << " is dead (HP = 0)" << std::endl;
     return ;
   }
   _hitPoints -= amount;
   _hitPoints = (_hitPoints < 0) ? 0 : _hitPoints;
   std::cout << SH_COLOR_GREEN
-    << "CL4P-TP: " << _name
+    << "CL4P-TP: " << getName()
     << " losts " << prev - _hitPoints << " points"
     << SH_COLOR_RESET << std::endl; 
 }
@@ -118,12 +118,12 @@ void ClapTrap::beRepaired(unsigned int amount) {
   unsigned int prev = _hitPoints;
 
   if (_hitPoints == _hitPointsMax) {
-    std::cerr << "CL4P-TP: " << _name << " is repaired enough" << std::endl;
+    std::cerr << "CL4P-TP: " << getName() << " is repaired enough" << std::endl;
     return ;
   }
   _hitPoints += amount;
   _hitPoints = (_hitPoints > _hitPointsMax) ? _hitPointsMax : _hitPoints;
-  std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name << " was healed by "
+  std::cout << SH_COLOR_GREEN << "CL4P-TP: " << getName() << " was healed by "
     << _hitPoints - prev
     << SH_COLOR_RESET << std::endl;
 }
