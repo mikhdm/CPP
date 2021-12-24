@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/22 14:32:48 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/25 00:40:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
     std::cerr << "CL4P-TP: " << _name << " is dead (HP = 0)" << std::endl;
     return ;
   }
-  _hitPoints -= amount;
-  _hitPoints = (_hitPoints < 0) ? 0 : _hitPoints;
+  _hitPoints = (amount >= _hitPoints) ? 0 : _hitPoints - amount;
   std::cout << SH_COLOR_GREEN
     << "CL4P-TP: " << _name
     << " losts " << prev - _hitPoints << " points"
@@ -137,8 +136,8 @@ void ClapTrap::beRepaired(unsigned int amount) {
     std::cerr << "CL4P-TP: " << _name << " is repaired enough" << std::endl;
     return ;
   }
-  _hitPoints += amount;
-  _hitPoints = (_hitPoints > _kHitPointsMax) ? _kHitPointsMax : _hitPoints;
+  unsigned long tmp = static_cast<unsigned long>(_hitPoints) + static_cast<unsigned long>(amount);
+  _hitPoints = ( tmp > static_cast<unsigned long>(_kHitPointsMax) ) ? _kHitPointsMax : _hitPoints + amount;
   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << _name << " was healed by "
     << _hitPoints - prev
     << SH_COLOR_RESET << std::endl;

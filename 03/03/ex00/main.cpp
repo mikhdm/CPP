@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 20:09:28 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/21 22:21:54 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/25 00:41:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 
 int main(void) {
+
   ClapTrap o("Orion");
   ClapTrap s("Sequoia");
   std::cout << std::endl;
