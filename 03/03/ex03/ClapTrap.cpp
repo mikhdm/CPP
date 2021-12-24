@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 15:24:06 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/25 00:40:42 by rmander          ###   ########.fr       */
+/*   Updated: 2021/12/25 00:49:18 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
     return ;
   }
   unsigned long tmp = static_cast<unsigned long>(_hitPoints) + static_cast<unsigned long>(amount);
-  _hitPoints = ( tmp > static_cast<unsigned long>(_kHitPointsMax) ) ? _kHitPointsMax : _hitPoints + amount;
+  _hitPoints = ( tmp > static_cast<unsigned long>(_hitPointsMax) ) ? _hitPointsMax : _hitPoints + amount;
   std::cout << SH_COLOR_GREEN << "CL4P-TP: " << getName() << " was healed by "
     << _hitPoints - prev
     << SH_COLOR_RESET << std::endl;
