@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 01:03:49 by rmander           #+#    #+#              #
-#    Updated: 2022/01/05 01:08:44 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/05 20:33:22 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC = clang++
 CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow=global
 
 SRCS = ./main.cpp \
-			 ./Animal.cpp
+			 ./Animal.cpp \
+			 ./Cat.cpp \
+			 ./Dog.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)

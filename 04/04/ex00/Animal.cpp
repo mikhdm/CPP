@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 23:27:58 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 01:49:42 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:29:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void Animal::log(std::string const& message, std::string const& color) {
 }
 
 
-Animal::Animal(void) {
-  Animal::log("Animal created", SH_COLOR_WHITE);
+Animal::Animal(void) : type("Animal") {
+  Animal::log(type + " created", SH_COLOR_WHITE);
 }
 
 
@@ -30,12 +30,12 @@ Animal::Animal(Animal const& instance) {
   if (this == &instance)
     return ;
   *this = instance;
-  Animal::log("Animal copy created", SH_COLOR_WHITE);
+  Animal::log(type + " copy created", SH_COLOR_WHITE);
 }
 
 
 Animal::~Animal(void) {
-  Animal::log("Animal destroyed", SH_COLOR_WHITE);
+  Animal::log(type + " destroyed", SH_COLOR_WHITE);
 }
 
 
