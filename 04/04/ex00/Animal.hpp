@@ -6,14 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 23:28:03 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 01:46:18 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 00:03:11 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ANIMAL_HPP
 # define ANIMAL_HPP
 
-#include <string>
+# include <string>
 
 # define SH_COLOR_WHITE		"\033[37m"
 # define SH_COLOR_BLUE		"\033[34m"
@@ -37,6 +37,7 @@ class Animal {
   virtual void makeSound(void) const;
   static void log(std::string const& message, std::string const& color);
  protected:
+  Animal(std::string const& ty);
   std::string type;
 };
   

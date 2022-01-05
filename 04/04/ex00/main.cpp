@@ -6,11 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 01:08:59 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 20:54:55 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 00:23:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
 
@@ -38,13 +40,6 @@ void test(void) {
   Animal::log("------", SH_COLOR_WHITE);
 
   Animal animal2;
-  Cat cat;
-  Dog dog;
-  animal2 = cat;
-  animal2.makeSound();
-  animal2 = dog;
-  animal2.makeSound();
-
   Animal animal3(animal2);
   animal3.makeSound();
 
@@ -71,5 +66,20 @@ int main(void) {
     delete i;
     delete j;
   }
-  return (0);
+
+  std::cout << SH_COLOR_BOLD << SH_COLOR_YELLOW
+    << "Subject (WrongAnimal & WrongCat): " << SH_COLOR_RESET << std::endl;
+  {
+    WrongAnimal* meta = new WrongAnimal();
+    WrongAnimal* i = new WrongCat();
+    std::cout << i->getType() << " " << std::endl;
+    i->makeSound(); //will output the animal sound :(
+    meta->makeSound();
+    delete meta;
+
+    meta = i;
+    meta->makeSound();
+    delete meta;
+  }
+  return (EXIT_SUCCESS);
 }
