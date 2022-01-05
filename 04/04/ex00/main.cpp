@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 01:08:59 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 20:35:12 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:54:55 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,47 @@
 
 #include <iostream>
 
+void test(void) {
+  Animal* animal = new Animal();
+  Animal::log("type: " + animal->getType(), SH_COLOR_WHITE);
+  delete animal;
+
+  Animal::log("------", SH_COLOR_WHITE);
+
+  animal = new Dog();
+  Animal::log("type: " + animal->getType(), SH_COLOR_WHITE);
+  animal->makeSound();
+  delete animal;
+
+  Animal::log("------", SH_COLOR_WHITE);
+
+  animal = new Cat();
+  Animal::log("type: " + animal->getType(), SH_COLOR_WHITE);
+  animal->makeSound();
+  delete animal;
+
+  Animal::log("------", SH_COLOR_WHITE);
+
+  Animal animal2;
+  Cat cat;
+  Dog dog;
+  animal2 = cat;
+  animal2.makeSound();
+  animal2 = dog;
+  animal2.makeSound();
+
+  Animal animal3(animal2);
+  animal3.makeSound();
+
+  Animal::log("------", SH_COLOR_WHITE);
+}
 
 int main(void) {
+
+  test();
+
+  std::cout << SH_COLOR_BOLD << SH_COLOR_YELLOW
+    << "Subject: " << SH_COLOR_RESET << std::endl;
   {
     const Animal* meta = new Animal();
     const Animal* j = new Dog();

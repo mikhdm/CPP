@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 20:31:52 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:38:39 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 Dog::Dog(void) : Animal() {
   setType("Dog");
-  Dog::log(type + " created", SH_COLOR_GREEN);
+  Dog::log(type + " created", SH_COLOR_YELLOW);
 }
 
 
@@ -23,12 +23,12 @@ Dog::Dog(Dog const& instance) {
   if (this == &instance)
     return ;
   *this = instance;
-  Dog::log(type + " copy created", SH_COLOR_GREEN);
+  Dog::log(type + " copy created", SH_COLOR_YELLOW);
 }
 
 
 Dog::~Dog(void) {
-  Dog::log(type + " destroyed", SH_COLOR_GREEN);
+  Dog::log(type + " destroyed", SH_COLOR_YELLOW);
 }
 
 

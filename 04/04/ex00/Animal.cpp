@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 23:27:58 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/05 20:29:33 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/05 20:38:22 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void Animal::setType(std::string const& newType) {
 
 
 void Animal::makeSound(void) const {
-  Animal::log("I'm " + type, SH_COLOR_WHITE);
+  Animal::log("I'm " + type + "!", SH_COLOR_WHITE);
 }
 
