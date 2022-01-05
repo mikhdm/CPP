@@ -6,11 +6,14 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 02:03:39 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 02:11:17 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 02:55:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Brain.hpp"
+#include "Animal.hpp"
+#include "Cat.hpp"
+#include "Dog.hpp"
 
 #include <iostream>
 
@@ -38,7 +41,23 @@ void brain_test(void) {
   }
 }
 
+void animals_test(void) {
+  Animal **animals = new Animal*[20];
+
+  for (size_t i = 0; i < 10; ++i)
+    animals[i] = new Cat();
+
+  for (size_t i = 10; i < 20; ++i)
+    animals[i] = new Dog();
+
+  for (size_t i = 0; i < 20; ++i)
+    delete animals[i];
+
+  delete [] animals;
+}
+
 int main(void) {
-  brain_test();
+  /* brain_test(); */
+  animals_test();
   return (0);
 }

@@ -6,20 +6,20 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 00:44:05 by rmander           #+#    #+#              #
-#    Updated: 2022/01/06 02:08:26 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/06 02:58:26 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = brain
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow
+CPPFLAGS = -fsanitize=address -fsanitize=undefined -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow
 
 SRCS = ./main.cpp \
+	   ./Animal.cpp \
+	   ./Cat.cpp \
+	   ./Dog.cpp \
 	   ./Brain.cpp
-	   # ./Animal.cpp \
-	   # ./Cat.cpp \
-	   # ./Dog.cpp \
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
