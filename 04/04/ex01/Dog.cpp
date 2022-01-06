@@ -6,11 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:45:17 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:28:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
+
+#include "Animal.hpp"
 
 
 Dog::Dog(void) : Animal("Dog"), brain(new Brain()) {

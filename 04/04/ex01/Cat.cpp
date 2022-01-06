@@ -6,11 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:56:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:47:41 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:28:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+
+#include "Animal.hpp"
 
 
 Cat::Cat(void) : Animal("Cat"), brain(new Brain()) {

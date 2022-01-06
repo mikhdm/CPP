@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 01:08:59 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:05:59 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:28:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include "Dog.hpp"
 
 #include <iostream>
+
 
 void test(void) {
   Animal* animal = new Animal();
@@ -45,6 +46,7 @@ void test(void) {
 
   Animal::log("------", SH_COLOR_WHITE);
 }
+
 
 int main(void) {
 

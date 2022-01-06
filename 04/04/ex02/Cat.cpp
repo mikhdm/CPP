@@ -6,30 +6,30 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:56:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 19:25:03 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:32:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 
-Cat::Cat(void) : Animal("Cat") {
-  Animal::log("Cat constructor", SH_COLOR_GREEN);
+Cat::Cat(void) : AAnimal("Cat") {
+  AAnimal::log("Cat constructor", SH_COLOR_GREEN);
 }
 
 
-Cat::Cat(Cat const& instance) : Animal("Cat") {
+Cat::Cat(Cat const& instance) : AAnimal("Cat") {
   if (this == &instance)
     return ;
   *this = instance;
-  Animal::log("Cat copy constructor", SH_COLOR_GREEN);
+  AAnimal::log("Cat copy constructor", SH_COLOR_GREEN);
 }
 
 
 Cat::~Cat(void) {
-  Animal::log("Cat destructor", SH_COLOR_GREEN);
+  AAnimal::log("Cat destructor", SH_COLOR_GREEN);
 }
 
 
@@ -41,5 +41,5 @@ Cat& Cat::operator=(Cat const& instance) {
 }
 
 void Cat::makeSound(void) const {
-  Animal::log("Meow!", SH_COLOR_GREEN);
+  AAnimal::log("Meow!", SH_COLOR_GREEN);
 }

@@ -1,45 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.cpp                                            :+:      :+:    :+:   */
+/*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 19:56:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 19:25:03 by rmander          ###   ########.fr       */
+/*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
+/*   Updated: 2022/01/06 19:33:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Cat.hpp"
+#include "Dog.hpp"
 
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 
-Cat::Cat(void) : Animal("Cat") {
-  Animal::log("Cat constructor", SH_COLOR_GREEN);
+Dog::Dog(void) : AAnimal("Dog") {
+  AAnimal::log("Dog constructor", SH_COLOR_YELLOW);
 }
 
 
-Cat::Cat(Cat const& instance) : Animal("Cat") {
+Dog::Dog(Dog const& instance) : AAnimal("Dog") {
   if (this == &instance)
     return ;
   *this = instance;
-  Animal::log("Cat copy constructor", SH_COLOR_GREEN);
+  AAnimal::log("Dog copy constructor", SH_COLOR_YELLOW);
 }
 
 
-Cat::~Cat(void) {
-  Animal::log("Cat destructor", SH_COLOR_GREEN);
+Dog::~Dog(void) {
+  AAnimal::log("Dog destructor", SH_COLOR_YELLOW);
 }
 
 
-Cat& Cat::operator=(Cat const& instance) {
+Dog& Dog::operator=(Dog const& instance) {
   if (this == &instance)
     return *this;
   type = instance.getType();
   return *this;
 }
 
-void Cat::makeSound(void) const {
-  Animal::log("Meow!", SH_COLOR_GREEN);
+
+void Dog::makeSound(void) const {
+  AAnimal::log("Bark!", SH_COLOR_YELLOW);
 }

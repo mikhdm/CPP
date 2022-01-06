@@ -6,11 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:06:48 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:26:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Dog.hpp"
+
+#include "Animal.hpp"
 
 
 Dog::Dog(void) : Animal("Dog") {
