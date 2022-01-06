@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 02:03:39 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:51:29 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:59:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,8 @@ int main(void) {
   kit_brain->setIdea(99, "Kitekaaaaaaaaaat!!!");
 
   Cat kat(kit);
-
   Brain * const kat_brain = kat.getBrain();
+
   std::cout << "Kit brain address: " << kit_brain << std::endl;
 
   for (size_t i = 0; i < IDEAS_COUNT; ++i) {
@@ -86,6 +86,16 @@ int main(void) {
     if (!idea.empty()) 
       std::cout << i << ": " << idea << std::endl;
   }
+  
+  std::cout << std::endl;
+  std::cout << SH_COLOR_BOLD << SH_COLOR_YELLOW << "--- Subject: ---" << SH_COLOR_RESET << std::endl;
+  {
+    const Animal* j = new Dog();
+    const Animal* i = new Cat();
+    delete j;//should not create a leak
+    delete i;
+  }
+  std::cout << "--- End Subject ---" << std::endl << std::endl;
   return (0);
 }
 
