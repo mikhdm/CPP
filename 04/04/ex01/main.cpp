@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 02:03:39 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 18:59:34 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 19:52:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int main(void) {
     delete i;
   }
   std::cout << "--- End Subject ---" << std::endl << std::endl;
+
   return (0);
 }
 
