@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 01:08:59 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 19:48:08 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 20:11:26 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 int main(void) {
 
   {
-    /* const AAnimal* meta = new AAnimal(); */
+    // const AAnimal* meta = new AAnimal();
     const AAnimal* j = new Dog();
     const AAnimal* i = new Cat();
     std::cout << j->getType() << " " << std::endl;
@@ -30,5 +30,6 @@ int main(void) {
     delete i;
     delete j;
   }
+
   return (0);
 }

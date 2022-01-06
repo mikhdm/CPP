@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 23:28:03 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 19:39:52 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 20:08:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@
 
 class AAnimal {
  public:
-  AAnimal(void);
-  AAnimal(AAnimal const& instance);
   virtual ~AAnimal(void);
   AAnimal& operator=(AAnimal const& instance);
 
@@ -37,7 +35,9 @@ class AAnimal {
   virtual void makeSound(void) const = 0;
   static void log(std::string const& message, std::string const& color);
  protected:
+  AAnimal(void);
   AAnimal(std::string const& ty);
+  AAnimal(AAnimal const& instance);
   std::string type;
 };
   

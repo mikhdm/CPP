@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/05 19:54:57 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 20:00:45 by rmander          ###   ########.fr       */
+/*   Created: 2022/01/06 01:00:28 by rmander           #+#    #+#             */
+/*   Updated: 2022/01/06 01:52:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include "AAnimal.hpp"
-# include "Brain.hpp"
+# include <string> 
+
+# define IDEAS_COUNT 100
 
 
-class Dog : public AAnimal {
+class Brain {
  public:
-  Dog(void);
-  Dog(Dog const& instance);
-  virtual ~Dog(void);
-  Dog& operator=(Dog const& instance);
-  void makeSound(void) const;
-  Brain* getBrain(void) const;
+   Brain(void);
+   Brain(Brain const& instance);
+   virtual ~Brain(void);
+   Brain& operator=(Brain const& instance);
+
+   std::string const& getIdea(unsigned int n) const;
+   void setIdea(unsigned int n, std::string idea);
  private:
-  Brain* brain;
+   std::string ideas[IDEAS_COUNT];
 };
 
-
-#endif // DOG_HPP
+#endif // BRAIN_HPP
