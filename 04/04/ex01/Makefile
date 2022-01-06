@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 00:44:05 by rmander           #+#    #+#              #
-#    Updated: 2022/01/06 02:58:26 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/06 18:46:32 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = brain
 
 CC = clang++
-CPPFLAGS = -fsanitize=address -fsanitize=undefined -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-compat-pedantic
 
 SRCS = ./main.cpp \
 	   ./Animal.cpp \

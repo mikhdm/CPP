@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:54:57 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 02:32:42 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:47:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Dog : public Animal {
   virtual ~Dog(void);
   Dog& operator=(Dog const& instance);
   void makeSound(void) const;
-  Brain const* getBrain(void) const;
+  Brain* getBrain(void) const;
  private:
   Brain* brain;
 };

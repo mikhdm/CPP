@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 02:03:39 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 02:55:05 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:51:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,35 @@ void animals_test(void) {
 }
 
 int main(void) {
-  /* brain_test(); */
+  brain_test();
   animals_test();
+  
+  std::cout << "---------------" << std::endl;
+
+  Cat kit;
+
+  Brain * const kit_brain = kit.getBrain();
+  kit_brain->setIdea(10, "Kitekat");
+  kit_brain->setIdea(99, "Kitekaaaaaaaaaat!!!");
+
+  Cat kat(kit);
+
+  Brain * const kat_brain = kat.getBrain();
+  std::cout << "Kit brain address: " << kit_brain << std::endl;
+
+  for (size_t i = 0; i < IDEAS_COUNT; ++i) {
+    std::string const idea = kit_brain->getIdea(i);
+    if (!idea.empty()) 
+      std::cout << i << ": " << idea << std::endl;
+  }
+
+  std::cout << "Kat brain address: " << kat_brain << std::endl;
+
+  for (size_t i = 0; i < IDEAS_COUNT; ++i) {
+    std::string const idea = kat_brain->getIdea(i);
+    if (!idea.empty()) 
+      std::cout << i << ": " << idea << std::endl;
+  }
   return (0);
 }
+

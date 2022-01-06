@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 00:37:30 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:06:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Dog::Dog(void) : Animal("Dog") {
 }
 
 
-Dog::Dog(Dog const& instance) {
+Dog::Dog(Dog const& instance) : Animal("Dog") {
   if (this == &instance)
     return ;
   *this = instance;

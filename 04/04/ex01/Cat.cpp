@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:56:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 02:36:46 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:47:41 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Cat::~Cat(void) {
 }
 
 
-Cat::Cat(Cat const& instance) {
+Cat::Cat(Cat const& instance) : Animal("Cat") {
   if (this == &instance)
     return ;
   *this = instance;
@@ -42,9 +42,11 @@ Cat& Cat::operator=(Cat const& instance) {
   return *this;
 }
 
-Brain const* Cat::getBrain(void) const {
+
+Brain* Cat::getBrain(void) const {
   return brain;
 }
+
 
 void Cat::makeSound(void) const {
   Animal::log("Meow!", SH_COLOR_GREEN);

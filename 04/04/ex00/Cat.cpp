@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 19:56:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 00:37:04 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:06:34 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ Cat::Cat(void) : Animal("Cat") {
 }
 
 
-Cat::Cat(Cat const& instance) {
+Cat::Cat(Cat const& instance) : Animal("Cat") {
   if (this == &instance)
     return ;
   *this = instance;

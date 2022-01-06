@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 21:03:32 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 00:38:15 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:07:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ WrongCat::WrongCat(void) : WrongAnimal("WrongCat") {
 }
 
 
-WrongCat::WrongCat(WrongCat const& instance) {
+WrongCat::WrongCat(WrongCat const& instance) : WrongAnimal("WrongCat") {
   if (this == &instance)
     return ;
   *this = instance;

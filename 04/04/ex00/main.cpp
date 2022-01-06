@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 01:08:59 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 00:23:21 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/06 18:05:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,5 @@ int main(void) {
     meta->makeSound();
     delete meta;
   }
-  return (EXIT_SUCCESS);
+  return (0);
 }

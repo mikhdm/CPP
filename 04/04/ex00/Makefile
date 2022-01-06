@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/05 01:03:49 by rmander           #+#    #+#              #
-#    Updated: 2022/01/06 00:23:36 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/06 18:35:17 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = animal
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-compat-pedantic
 
 SRCS = ./main.cpp \
 			 ./Animal.cpp \
