@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:53:55 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/08 22:30:36 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/08 23:05:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,16 @@
 # define BUREAUCRAT_HPP
 
 #include <string>
+#include <iostream>
 
 
 class Bureaucrat {
  public:
   Bureaucrat(void);
-  ~Bureaucrat(void);
+  virtual ~Bureaucrat(void);
   Bureaucrat(Bureaucrat const& instance);
+  Bureaucrat(std::string const& name, unsigned int grade);
   Bureaucrat& operator=(Bureaucrat const& instance);
-  Bureaucrat(unsigned int grade);
 
   std::string const& getName(void) const;
   unsigned int getGrade(void) const;
@@ -46,5 +47,6 @@ class Bureaucrat {
   unsigned int _grade;
 };
 
+std::ostream& operator<<(std::ostream const& o, Bureaucrat const& b);
 
 #endif
