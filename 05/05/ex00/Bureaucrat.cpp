@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:33:19 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/08 23:12:31 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/09 02:51:27 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,20 @@
 #include <iostream>
 
 
-unsigned int Bureaucrat::gradeMax = 1;
-unsigned int Bureaucrat::gradeMin = 150;
+unsigned int const Bureaucrat::kGradeMax = 1;
+unsigned int const Bureaucrat::kGradeMin = 150;
 
 
 Bureaucrat::Bureaucrat(void)
-  : _name("Bureaucrat"), _grade(Bureaucrat::gradeMin) {
+  : _name("Bureaucrat"), _grade(Bureaucrat::kGradeMin) {
   std::cout << "Bureaucrat constructor" << std::endl;
 }
 
 
 Bureaucrat::Bureaucrat(std::string const& name, unsigned int grade) : _name(name) {
-  if (grade > Bureaucrat::gradeMin)
+  if (grade > Bureaucrat::kGradeMin)
     throw GradeTooLowException();
-  if (grade < Bureaucrat::gradeMax)
+  if (grade < Bureaucrat::kGradeMax)
     throw GradeTooHighException();
   _grade = grade;
   std::cout << "Bureaucrat constructor" << std::endl;
@@ -38,7 +38,7 @@ Bureaucrat::Bureaucrat(std::string const& name, unsigned int grade) : _name(name
 Bureaucrat::Bureaucrat(Bureaucrat const& instance) : _name(instance.getName()) {
   if (this == &instance)
     return ;
-  *this = instance;
+  _grade = instance.getGrade();
   std::cout << "Bureaucrat copy constructor" << std::endl;
 }
 
@@ -51,12 +51,12 @@ Bureaucrat::~Bureaucrat(void) {
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const& instance) {
   if (this == &instance)
     return *this;
-  throw std::exception("Can't assign bureaucrats.");
+  throw OpOverloadException("Can't assign bureaucrats.");
 }
 
 
 void Bureaucrat::incGrade(void) {
-  if (_grade == Bureaucrat::gradeMax) {
+  if (_grade == Bureaucrat::kGradeMax) {
     throw GradeTooHighException();
   }
   --_grade;
@@ -64,7 +64,7 @@ void Bureaucrat::incGrade(void) {
 
 
 void Bureaucrat::decGrade(void) {
-  if (_grade == Bureaucrat::gradeMin) {
+  if (_grade == Bureaucrat::kGradeMin) {
     throw GradeTooLowException();
   }
   ++_grade;
@@ -81,16 +81,29 @@ unsigned int Bureaucrat::getGrade(void) const {
 }
 
 
-std::ostream& operator<<(std::ostream const& o, Bureaucrat const& b) {
-  std::cout << b.getName() << ", " << "bureaucrat grade " << b.getGrade() << std::endl; 
+std::ostream& operator<<(std::ostream& o, Bureaucrat const& b) {
+  o << b.getName() << ", " << "bureaucrat grade " << b.getGrade();
+  return o;
 }
 
 
-const char* Bureaucrat::GradeTooLowException::what() const {
+const char* Bureaucrat::GradeTooLowException::what() const throw() {
   return "Grade is too low :(";
 }
 
 
-const char* Bureaucrat::GradeTooHighException::what() const {
+const char* Bureaucrat::GradeTooHighException::what() const throw() {
   return "Grade is too high :(";
+}
+
+
+Bureaucrat::OpOverloadException::OpOverloadException(
+    std::string const& message) : std::exception(), _message(message) {}
+
+
+Bureaucrat::OpOverloadException::~OpOverloadException(void) throw() {}
+
+
+const char* Bureaucrat::OpOverloadException::what() const throw() {
+  return _message.c_str();
 }
