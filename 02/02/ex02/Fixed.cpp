@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/19 20:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2021/12/21 13:31:00 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/09 21:02:13 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,8 @@ void Fixed::setRawBits(int const raw) {
 
 
 int Fixed::toInt(void) const {
+  if (_value < 0)
+    return -(~_value >> Fixed::_bits); 
   return _value >> Fixed::_bits;
 }
 
