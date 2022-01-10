@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:57:43 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:00:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ int main(void) {
   testForm(president, clerk, p1);
 
   std::cout << std::endl;
-  
 
   return (EXIT_SUCCESS);
 }
