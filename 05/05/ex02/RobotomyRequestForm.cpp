@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:03:54 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:38:53 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:51:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,6 @@ const char* RobotomyRequestForm::FailureException::what() const throw() {
 RobotomyRequestForm& RobotomyRequestForm::operator=(
     RobotomyRequestForm const& instance) {
   static_cast<void>(instance);
-  throw Bureaucrat::OpOverloadException("Can't create forms.");
+  throw Bureaucrat::OpOverloadException("Can't assign forms.");
 }
 

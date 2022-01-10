@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:15:05 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 20:35:58 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:51:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,5 @@ void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(
     ShrubberyCreationForm const& instance) {
   static_cast<void>(instance);
-  throw Bureaucrat::OpOverloadException("Can't create forms.");
+  throw Bureaucrat::OpOverloadException("Can't assign forms.");
 }

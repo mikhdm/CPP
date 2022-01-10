@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:38:49 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:57:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 
 void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
@@ -68,6 +69,7 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
   }
 }
 
+
 int main(void) {
 
   std::srand(std::time(nullptr));
@@ -85,6 +87,7 @@ int main(void) {
   
   ShrubberyCreationForm sh1("christmas");
   RobotomyRequestForm r1("hand");
+  PresidentialPardonForm p1("Matthew");
 
   testForm(president, clerk, sh1);
 
@@ -93,6 +96,11 @@ int main(void) {
   testForm(president, clerk, r1);
   
   std::cout << std::endl;
+
+  testForm(president, clerk, p1);
+
+  std::cout << std::endl;
   
+
   return (EXIT_SUCCESS);
 }

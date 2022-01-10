@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:06:18 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 20:06:01 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:59:30 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ class ShrubberyCreationForm : public Form {
  public:
   explicit ShrubberyCreationForm(void);
   explicit ShrubberyCreationForm(std::string const& target);
-  explicit ShrubberyCreationForm(ShrubberyCreationForm const& instance);
+  ShrubberyCreationForm(ShrubberyCreationForm const& instance);
   virtual ~ShrubberyCreationForm(void);
   ShrubberyCreationForm& operator=(ShrubberyCreationForm const& instance);
 

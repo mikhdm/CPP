@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 02:54:58 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 01:58:44 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:59:00 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 class Form {
  public:
   explicit Form(void);
-  explicit Form(Form const& instance); 
+  Form(Form const& instance); 
   virtual ~Form(void);
   Form& operator=(Form const& instance);
   explicit Form(std::string const& name,

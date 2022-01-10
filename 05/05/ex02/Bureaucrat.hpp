@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:53:55 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 20:43:54 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:58:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class Form;
 class Bureaucrat {
  public:
   explicit Bureaucrat(void);
-  explicit Bureaucrat(Bureaucrat const& instance);
+  Bureaucrat(Bureaucrat const& instance);
   explicit Bureaucrat(std::string const& name, unsigned int grade);
   virtual ~Bureaucrat(void);
   Bureaucrat& operator=(Bureaucrat const& instance);
