@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:33:19 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/09 02:51:27 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 02:00:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 #include <iostream>
 
+#include "Form.hpp"
 
 unsigned int const Bureaucrat::kGradeMax = 1;
 unsigned int const Bureaucrat::kGradeMin = 150;
@@ -49,8 +50,7 @@ Bureaucrat::~Bureaucrat(void) {
 
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const& instance) {
-  if (this == &instance)
-    return *this;
+  static_cast<void>(instance);
   throw OpOverloadException("Can't assign bureaucrats.");
 }
 
@@ -68,6 +68,17 @@ void Bureaucrat::decGrade(void) {
     throw GradeTooLowException();
   }
   ++_grade;
+}
+
+
+void Bureaucrat::signForm(Form* form) const {
+  try {
+    form->beSigned(*this);
+    std::cout << _name << " signs " << form->getName() << std::endl;
+  } catch (Form::GradeTooLowException const& e) {
+    std::cerr << _name << " cannot sign " << form->getName()
+      << " because " << e.what() << std::endl;
+  }
 }
 
 

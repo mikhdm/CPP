@@ -6,11 +6,11 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 20:53:07 by rmander           #+#    #+#              #
-#    Updated: 2022/01/09 02:54:32 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/10 02:01:59 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = bureaucrat
+NAME = form
 
 CC = clang++
 CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-compat-pedantic

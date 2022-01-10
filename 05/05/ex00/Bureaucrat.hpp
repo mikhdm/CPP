@@ -6,10 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:53:55 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/09 02:38:38 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 00:27:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#pragma once
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 

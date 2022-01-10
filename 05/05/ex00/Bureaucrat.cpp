@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:33:19 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/09 02:51:27 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 01:59:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,7 @@ Bureaucrat::~Bureaucrat(void) {
 
 
 Bureaucrat& Bureaucrat::operator=(Bureaucrat const& instance) {
-  if (this == &instance)
-    return *this;
+  static_cast<void>(instance);
   throw OpOverloadException("Can't assign bureaucrats.");
 }
 
