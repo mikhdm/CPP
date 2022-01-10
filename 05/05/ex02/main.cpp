@@ -6,18 +6,71 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 20:55:42 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 22:38:49 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 #include <iostream>
+#include <ctime>
+#include <cstdlib>
 
 #include "Form.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+
+
+void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
+
+  std::cout << form << std::endl;
+  std::cout << b << " tries to execute " << form << std::endl;
+
+  try {
+    b.executeForm(form);
+  }
+  catch (Form::ExecutionForbiddenException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (Form::GradeTooLowException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  b.signForm(form);
+  std::cout << form << std::endl;
+
+  try {
+    b.executeForm(form);
+  } 
+  catch (Form::ExecutionForbiddenException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (Form::GradeTooLowException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (RobotomyRequestForm::FailureException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  std::cout << std::endl;
+
+  try {
+    clerk.executeForm(form);
+  } 
+  catch (Form::ExecutionForbiddenException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (Form::GradeTooLowException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (RobotomyRequestForm::FailureException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+}
 
 int main(void) {
+
+  std::srand(std::time(nullptr));
   
   Bureaucrat president("John", 1);
   Bureaucrat vice("David", 2);
@@ -29,37 +82,17 @@ int main(void) {
   std::cout << vice << std::endl;
   std::cout << finlead << std::endl;
   std::cout << clerk << std::endl << std::endl;;
-
-
+  
   ShrubberyCreationForm sh1("christmas");
+  RobotomyRequestForm r1("hand");
 
-  std::cout << sh1 << std::endl;
-  std::cout << president << " tries to execute " << sh1 << std::endl;
+  testForm(president, clerk, sh1);
 
-  try {
-    president.executeForm(sh1);
-  }
-  catch (Form::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (Form::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-
-  president.signForm(sh1);
-  std::cout << sh1;
-  president.executeForm(sh1);
   std::cout << std::endl;
 
-  try {
-    clerk.executeForm(sh1);
-  } 
-  catch (Form::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (Form::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
+  testForm(president, clerk, r1);
+  
+  std::cout << std::endl;
   
   return (EXIT_SUCCESS);
 }
