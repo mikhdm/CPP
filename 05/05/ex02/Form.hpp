@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 02:54:58 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 01:58:44 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 04:50:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,10 @@ class Form {
    public:
     virtual const char* what() const throw();
   };
+
+ protected:
+  explicit Form(std::string const& name,
+      unsigned int signGrade, unsigned execGrade, bool isSigned);
 
  private:
   static unsigned int const kGradeMax;

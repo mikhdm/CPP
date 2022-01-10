@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 00:16:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 02:14:46 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 04:40:57 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,18 @@ Form::Form(std::string const& name,
     unsigned int signGrade, unsigned int execGrade)
   : _name(name), _signGrade(signGrade),
     _execGrade(execGrade), _signed(false) {
+    if (_signGrade < Form::kGradeMax || _execGrade < Form::kGradeMax)
+      throw Form::GradeTooHighException();
+    if (_signGrade > Form::kGradeMin || _execGrade > Form::kGradeMin)
+      throw Form::GradeTooLowException();
+    std::cout << "Form constructor" << std::endl;
+}
+
+
+Form::Form(std::string const& name,
+    unsigned int signGrade, unsigned int execGrade, bool isSigned)
+  : _name(name), _signGrade(signGrade),
+    _execGrade(execGrade), _signed(isSigned) {
     if (_signGrade < Form::kGradeMax || _execGrade < Form::kGradeMax)
       throw Form::GradeTooHighException();
     if (_signGrade > Form::kGradeMin || _execGrade > Form::kGradeMin)

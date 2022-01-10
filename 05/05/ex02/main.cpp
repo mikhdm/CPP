@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 03:35:05 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 04:49:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <iostream>
 
 #include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
 
 int main(void) {
   
@@ -36,6 +37,8 @@ int main(void) {
   std::cout << a1;
   std::cout << a2;
   std::cout << a150;
+
+  ShrubberyCreationForm shform("super");
   
   return (EXIT_SUCCESS);
 }
