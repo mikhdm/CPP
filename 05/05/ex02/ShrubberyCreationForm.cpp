@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:15:05 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 04:58:10 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 05:06:53 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ ShrubberyCreationForm::ShrubberyCreationForm(void)
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
   : Form("ShrubberyCreationForm", 145, 137) {
-  makeTree(target);
   std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
