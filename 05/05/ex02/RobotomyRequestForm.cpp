@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 21:03:54 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:51:15 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:15:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,24 @@
 #include <iostream>
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 
 RobotomyRequestForm::RobotomyRequestForm(void)
-  : Form("RobotomyRequestForm", 72, 45), _target("self") {
+  : AForm("RobotomyRequestForm", 72, 45), _target("self") {
   std::cout << "RobotomyRequestForm constructor" << std::endl;
 }
 
 
 RobotomyRequestForm::RobotomyRequestForm(std::string const& target)
-  : Form("RobotomyRequestForm", 72, 45), _target(target) {
+  : AForm("RobotomyRequestForm", 72, 45), _target(target) {
   std::cout << "RobotomyRequestForm constructor" << std::endl;
 }
 
 
 RobotomyRequestForm
   ::RobotomyRequestForm(RobotomyRequestForm const& instance)
-    : Form(instance.getName(), instance.getSignGrade(),
+    : AForm(instance.getName(), instance.getSignGrade(),
            instance.getExecGrade(), instance.getSigned()),
       _target(instance.getTarget()) {
   std::cout << "RobotomyRequestForm copy constructor" << std::endl;
@@ -72,9 +72,9 @@ void RobotomyRequestForm::tellMessage(void) const {
 
 void RobotomyRequestForm::execute(Bureaucrat const& executor) const {
   if (!getSigned())
-    throw Form::ExecutionForbiddenException();
+    throw AForm::ExecutionForbiddenException();
   if (executor.getGrade() > getExecGrade())
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   tellMessage();
 }
 

@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 20:53:07 by rmander           #+#    #+#              #
-#    Updated: 2022/01/10 03:34:32 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/10 23:18:38 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-comp
 
 SRCS = ./main.cpp \
 	   ./Bureaucrat.cpp \
-	   ./Form.cpp \
+	   ./AForm.cpp \
 	   ./ShrubberyCreationForm.cpp \
 	   ./RobotomyRequestForm.cpp \
 	   ./PresidentialPardonForm.cpp

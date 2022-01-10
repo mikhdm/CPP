@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:06:18 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:59:30 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:16:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #ifndef SHRUBBERYCREATIONFORM_HPP
 # define SHRUBBERYCREATIONFORM_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 #include <string>
 
 
-class ShrubberyCreationForm : public Form {
+class ShrubberyCreationForm : public AForm {
  public:
   explicit ShrubberyCreationForm(void);
   explicit ShrubberyCreationForm(std::string const& target);

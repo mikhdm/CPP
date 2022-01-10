@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 22:48:56 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:53:40 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:14:45 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,20 @@
 
 
 PresidentialPardonForm::PresidentialPardonForm(void)
-  : Form("PresidentialPardonForm", 25, 5), _target("self") {
+  : AForm("PresidentialPardonForm", 25, 5), _target("self") {
   std::cout << "PresidentialPardonForm constructor" << std::endl;
 }
 
 
 PresidentialPardonForm::PresidentialPardonForm(std::string const& target)
-  : Form("PresidentialPardonForm", 25, 5), _target(target) {
+  : AForm("PresidentialPardonForm", 25, 5), _target(target) {
   std::cout << "PresidentialPardonForm constructor" << std::endl;
 }
 
 
 PresidentialPardonForm
   ::PresidentialPardonForm(PresidentialPardonForm const& instance)
-    : Form(instance.getName(), instance.getSignGrade(),
+    : AForm(instance.getName(), instance.getSignGrade(),
            instance.getExecGrade(), instance.getSigned()),
       _target(instance.getTarget()) {
   std::cout << "PresidentialPardonForm copy constructor" << std::endl;
@@ -46,9 +46,9 @@ std::string const& PresidentialPardonForm::getTarget(void) const {
 
 void PresidentialPardonForm::execute(Bureaucrat const& executor) const {
   if (!getSigned())
-    throw Form::ExecutionForbiddenException();
+    throw AForm::ExecutionForbiddenException();
   if (executor.getGrade() > getExecGrade())
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   std::cout << _target << " has been pardoned by Zafod Beeblebrox"
     << std::endl;
 }

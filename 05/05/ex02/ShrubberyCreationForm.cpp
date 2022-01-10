@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:15:05 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:51:04 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:16:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,20 +19,20 @@
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(void)
-  : Form("ShrubberyCreationForm", 145, 137), _target("self") {
+  : AForm("ShrubberyCreationForm", 145, 137), _target("self") {
   std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
-  : Form("ShrubberyCreationForm", 145, 137), _target(target) {
+  : AForm("ShrubberyCreationForm", 145, 137), _target(target) {
   std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
 
 ShrubberyCreationForm
   ::ShrubberyCreationForm(ShrubberyCreationForm const& instance)
-    : Form(instance.getName(), instance.getSignGrade(),
+    : AForm(instance.getName(), instance.getSignGrade(),
            instance.getExecGrade(), instance.getSigned()),
       _target(instance.getTarget()) {
   std::cout << "ShrubberyCreationForm copy constructor" << std::endl;
@@ -78,9 +78,9 @@ void ShrubberyCreationForm::makeTree(void) const {
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
   if (!getSigned())
-    throw Form::ExecutionForbiddenException();
+    throw AForm::ExecutionForbiddenException();
   if (executor.getGrade() > getExecGrade())
-    throw Form::GradeTooLowException();
+    throw AForm::GradeTooLowException();
   makeTree();
 }
 

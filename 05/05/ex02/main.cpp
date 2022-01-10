@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 23:00:05 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:17:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 #include <ctime>
 #include <cstdlib>
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
 
-void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
+void testForm(Bureaucrat& b, Bureaucrat& clerk, AForm& form) {
 
   std::cout << form << std::endl;
   std::cout << b << " tries to execute " << form << std::endl;
@@ -30,10 +30,10 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
   try {
     b.executeForm(form);
   }
-  catch (Form::ExecutionForbiddenException const& e) {
+  catch (AForm::ExecutionForbiddenException const& e) {
     std::cout << e.what() << std::endl;
   }
-  catch (Form::GradeTooLowException const& e) {
+  catch (AForm::GradeTooLowException const& e) {
     std::cout << e.what() << std::endl;
   }
 
@@ -43,10 +43,10 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
   try {
     b.executeForm(form);
   } 
-  catch (Form::ExecutionForbiddenException const& e) {
+  catch (AForm::ExecutionForbiddenException const& e) {
     std::cout << e.what() << std::endl;
   }
-  catch (Form::GradeTooLowException const& e) {
+  catch (AForm::GradeTooLowException const& e) {
     std::cout << e.what() << std::endl;
   }
   catch (RobotomyRequestForm::FailureException const& e) {
@@ -58,10 +58,10 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, Form& form) {
   try {
     clerk.executeForm(form);
   } 
-  catch (Form::ExecutionForbiddenException const& e) {
+  catch (AForm::ExecutionForbiddenException const& e) {
     std::cout << e.what() << std::endl;
   }
-  catch (Form::GradeTooLowException const& e) {
+  catch (AForm::GradeTooLowException const& e) {
     std::cout << e.what() << std::endl;
   }
   catch (RobotomyRequestForm::FailureException const& e) {

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 20:58:07 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 22:57:51 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:15:08 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 #ifndef ROBOTOMYREQUESTFORM_HPP
 # define ROBOTOMYREQUESTFORM_HPP
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 #include <string>
 
-class RobotomyRequestForm : public Form {
+class RobotomyRequestForm : public AForm {
  public:
   explicit RobotomyRequestForm(void);
   explicit RobotomyRequestForm(std::string const& target);
