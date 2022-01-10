@@ -6,14 +6,13 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 20:33:19 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 23:23:29 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 23:12:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 
 #include <iostream>
-#include <string>
 
 #include "AForm.hpp"
 
