@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:06:18 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 17:51:06 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 20:06:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ class ShrubberyCreationForm : public Form {
   std::string const& getTarget(void) const;
   void execute(Bureaucrat const& executor) const;
  private:
-  void makeTree(void);
+  void makeTree(void) const;
   std::string _target;
 };
 

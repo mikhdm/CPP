@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/06 20:53:55 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 17:50:47 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 20:43:54 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,8 @@ class Bureaucrat {
   void incGrade(void);
   void decGrade(void);
 
-  void signForm(Form* form) const;
+  void signForm(Form& form);
+  void executeForm(Form const& form);
 
   class GradeTooHighException : public std::exception {
    public:

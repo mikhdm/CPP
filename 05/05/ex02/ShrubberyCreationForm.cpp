@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:15:05 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 17:59:21 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 20:35:58 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ std::string const& ShrubberyCreationForm::getTarget(void) const {
 }
 
 
-void ShrubberyCreationForm::makeTree(void) {
+void ShrubberyCreationForm::makeTree(void) const {
   std::string filename = _target + "__shrubbery";
   std::string tree = \
 "                     .     .  .      +     .      .          .\n"
@@ -77,9 +77,9 @@ void ShrubberyCreationForm::makeTree(void) {
 }
 
 void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
-  if (!_signed)
+  if (!getSigned())
     throw Form::ExecutionForbiddenException();
-  if (executor.getGrade() > _execGrade) 
+  if (executor.getGrade() > getExecGrade())
     throw Form::GradeTooLowException();
   makeTree();
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 00:16:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 17:58:37 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 20:51:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void Form::beSigned(Bureaucrat const& b) {
   throw Form::GradeTooLowException();
 }
 
+
 Form& Form::operator=(Form const& instance) {
   static_cast<void>(instance);
   throw Bureaucrat::OpOverloadException("Can't assign forms.");
@@ -117,5 +118,5 @@ const char* Form::GradeTooHighException::what() const throw() {
 
 
 const char* Form::ExecutionForbiddenException::what() const throw() {
-  return "Can't execute form";
+  return "Form is not executable";
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 17:46:37 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 20:54:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,36 @@ int main(void) {
   std::cout << finlead << std::endl;
   std::cout << clerk << std::endl << std::endl;;
 
-  ShrubberyCreationForm shform("super");
+
+  ShrubberyCreationForm sh1("christmas");
+
+  std::cout << sh1 << std::endl;
+  std::cout << president << " tries to execute " << sh1 << std::endl;
+
+  try {
+    president.executeForm(sh1);
+  }
+  catch (Form::ExecutionForbiddenException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (Form::GradeTooLowException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+
+  president.signForm(sh1);
+  std::cout << sh1;
+  president.executeForm(sh1);
+  std::cout << std::endl;
+
+  try {
+    clerk.executeForm(sh1);
+  } 
+  catch (Form::ExecutionForbiddenException const& e) {
+    std::cout << e.what() << std::endl;
+  }
+  catch (Form::GradeTooLowException const& e) {
+    std::cout << e.what() << std::endl;
+  }
   
   return (EXIT_SUCCESS);
 }
