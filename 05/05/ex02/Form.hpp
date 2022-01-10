@@ -6,11 +6,12 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/09 02:54:58 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 04:50:32 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 17:58:29 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #pragma once
+
 #ifndef FORM_HPP
 # define FORM_HPP
 
@@ -34,6 +35,7 @@ class Form {
   unsigned int getExecGrade(void) const;
 
   void beSigned(Bureaucrat const& b);
+  virtual void execute(Bureaucrat const& executor) const = 0;
 
   class GradeTooHighException : public std::exception {
    public:
@@ -41,6 +43,11 @@ class Form {
   };
 
   class GradeTooLowException : public std::exception {
+   public:
+    virtual const char* what() const throw();
+  };
+
+  class ExecutionForbiddenException : public std::exception {
    public:
     virtual const char* what() const throw();
   };

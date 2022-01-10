@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 04:49:45 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 17:46:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,6 @@ int main(void) {
   std::cout << vice << std::endl;
   std::cout << finlead << std::endl;
   std::cout << clerk << std::endl << std::endl;;
-
-  Form a1("President exclusion", 1, 1); 
-  Form a2("Vice president exclusion", 2, 1);
-  Form a150("Generic Exclusion", 10, 100);
-
-  std::cout << a1;
-  std::cout << a2;
-  std::cout << a150;
 
   ShrubberyCreationForm shform("super");
   

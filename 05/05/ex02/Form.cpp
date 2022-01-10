@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 00:16:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 04:40:57 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 17:58:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,4 +113,9 @@ const char* Form::GradeTooLowException::what() const throw() {
 
 const char* Form::GradeTooHighException::what() const throw() {
   return "Grade is too high";
+}
+
+
+const char* Form::ExecutionForbiddenException::what() const throw() {
+  return "Can't execute form";
 }

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 04:15:05 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 05:06:53 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/10 17:59:21 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,17 @@
 #include <iostream>
 #include <fstream>
 
+#include "Bureaucrat.hpp"
+
 
 ShrubberyCreationForm::ShrubberyCreationForm(void)
-  : Form("ShrubberyCreationForm", 145, 137) {
+  : Form("ShrubberyCreationForm", 145, 137), _target("self") {
   std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
 
 ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
-  : Form("ShrubberyCreationForm", 145, 137) {
+  : Form("ShrubberyCreationForm", 145, 137), _target(target) {
   std::cout << "ShrubberyCreationForm constructor" << std::endl;
 }
 
@@ -31,7 +33,8 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string const& target)
 ShrubberyCreationForm
   ::ShrubberyCreationForm(ShrubberyCreationForm const& instance)
     : Form(instance.getName(), instance.getSignGrade(),
-           instance.getExecGrade(), instance.getSigned()) {
+           instance.getExecGrade(), instance.getSigned()),
+      _target(instance.getTarget()) {
   std::cout << "ShrubberyCreationForm copy constructor" << std::endl;
 }
 
@@ -41,8 +44,13 @@ ShrubberyCreationForm::~ShrubberyCreationForm(void) {
 }
 
 
-void ShrubberyCreationForm::makeTree(std::string const& target) {
-  std::string filename = target + "__shrubbery"; 
+std::string const& ShrubberyCreationForm::getTarget(void) const {
+  return _target;
+}
+
+
+void ShrubberyCreationForm::makeTree(void) {
+  std::string filename = _target + "__shrubbery";
   std::string tree = \
 "                     .     .  .      +     .      .          .\n"
 "                .       .      .     #       .           .\n"
@@ -66,6 +74,14 @@ void ShrubberyCreationForm::makeTree(std::string const& target) {
     throw std::exception();
   f << tree;
   f.close();
+}
+
+void ShrubberyCreationForm::execute(Bureaucrat const& executor) const {
+  if (!_signed)
+    throw Form::ExecutionForbiddenException();
+  if (executor.getGrade() > _execGrade) 
+    throw Form::GradeTooLowException();
+  makeTree();
 }
 
 
