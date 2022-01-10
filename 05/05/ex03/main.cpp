@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 23:17:44 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 00:50:19 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,86 +20,44 @@
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
-
-void testForm(Bureaucrat& b, Bureaucrat& clerk, AForm& form) {
-
-  std::cout << form << std::endl;
-  std::cout << b << " tries to execute " << form << std::endl;
-
-  try {
-    b.executeForm(form);
-  }
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-
-  b.signForm(form);
-  std::cout << form << std::endl;
-
-  try {
-    b.executeForm(form);
-  } 
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (RobotomyRequestForm::FailureException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-
-  std::cout << std::endl;
-
-  try {
-    clerk.executeForm(form);
-  } 
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (RobotomyRequestForm::FailureException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-}
 
 
 int main(void) {
 
-  std::srand(std::time(nullptr));
-  
   Bureaucrat president("John", 1);
-  Bureaucrat vice("David", 2);
-  Bureaucrat finlead("McLaren", 3);
-  Bureaucrat clerk("Matthew", 150);
+  Intern intern;
 
-  std::cout << std::endl << "Investement bank \"Winds of the East\" staff: " << std::endl;
-  std::cout << president << std::endl;
-  std::cout << vice << std::endl;
-  std::cout << finlead << std::endl;
-  std::cout << clerk << std::endl << std::endl;;
-  
-  ShrubberyCreationForm sh1("christmas");
-  RobotomyRequestForm r1("hand");
-  PresidentialPardonForm p1("Matthew");
+  AForm* form;
 
-  testForm(president, clerk, sh1);
+  form = intern.makeForm("robotomy request", "head");
+  if (form) {
+    president.signForm(*form);
+    president.executeForm(*form);
+    delete form;
+  }
 
-  std::cout << std::endl;
+  form = intern.makeForm("presidential pardon", "bobiboba");
+  if (form) {
+    president.signForm(*form);
+    president.executeForm(*form);
+    delete form;
+  }
 
-  testForm(president, clerk, r1);
-  
-  std::cout << std::endl;
+  form = intern.makeForm("shrubbery creation", "hohoho");
+  if (form) {
+    president.signForm(*form);
+    president.executeForm(*form);
+    delete form;
+  }
 
-  testForm(president, clerk, p1);
-
-  std::cout << std::endl;
+  form = intern.makeForm("BOBOTOMY request", "head");
+  if (form) {
+    president.signForm(*form);
+    president.executeForm(*form);
+    delete form;
+  }
 
   return (EXIT_SUCCESS);
 }

@@ -6,11 +6,11 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/06 20:53:07 by rmander           #+#    #+#              #
-#    Updated: 2022/01/10 23:18:38 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/11 00:43:48 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = form
+NAME = intern
 
 CC = clang++
 CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-compat-pedantic
@@ -20,7 +20,8 @@ SRCS = ./main.cpp \
 	   ./AForm.cpp \
 	   ./ShrubberyCreationForm.cpp \
 	   ./RobotomyRequestForm.cpp \
-	   ./PresidentialPardonForm.cpp
+	   ./PresidentialPardonForm.cpp \
+		 ./Intern.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
