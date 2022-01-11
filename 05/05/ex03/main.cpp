@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/11 15:59:15 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:59:54 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 #include "Intern.hpp"
 
 
-void applyForm(Bureaucrat &b, AForm *form) {
+static void applyForm(Bureaucrat &b, AForm *form) {
     try {
       b.signForm(*form);
       b.executeForm(*form);
@@ -32,6 +32,7 @@ void applyForm(Bureaucrat &b, AForm *form) {
       std::cout << e.what() << std::endl;
     }
 }
+
 
 int main(void) {
   Bureaucrat president("John", 1);
