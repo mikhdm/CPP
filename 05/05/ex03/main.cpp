@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/11 00:51:45 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:59:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,39 +23,42 @@
 #include "Intern.hpp"
 
 
+void applyForm(Bureaucrat &b, AForm *form) {
+    try {
+      b.signForm(*form);
+      b.executeForm(*form);
+    }
+    catch (std::exception const& e) {
+      std::cout << e.what() << std::endl;
+    }
+}
 
 int main(void) {
-
   Bureaucrat president("John", 1);
   Intern intern;
-
-  AForm* form;
+  AForm* form = nullptr;
 
   form = intern.makeForm("robotomy request", "head");
   if (form) {
-    president.signForm(*form);
-    president.executeForm(*form);
+    applyForm(president, form);
     delete form;
   }
 
   form = intern.makeForm("presidential pardon", "bobiboba");
   if (form) {
-    president.signForm(*form);
-    president.executeForm(*form);
+    applyForm(president, form);
     delete form;
   }
 
   form = intern.makeForm("shrubbery creation", "hohoho");
   if (form) {
-    president.signForm(*form);
-    president.executeForm(*form);
+    applyForm(president, form);
     delete form;
   }
 
   form = intern.makeForm("BOBOTOMY request", "head");
   if (form) {
-    president.signForm(*form);
-    president.executeForm(*form);
+    applyForm(president, form);
     delete form;
   }
 

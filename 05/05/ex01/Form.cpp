@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 00:16:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 02:14:46 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:51:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void Form::beSigned(Bureaucrat const& b) {
   }
   throw Form::GradeTooLowException();
 }
+
 
 Form& Form::operator=(Form const& instance) {
   static_cast<void>(instance);
