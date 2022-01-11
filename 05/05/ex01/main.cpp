@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 02:18:28 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:35:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ int main(void) {
   std::cout << "Trying create form with too low sign grade: " << std::endl;
   try {
     Form a1000("Nonexistent form", 151, 100);
-  } catch (Form::GradeTooLowException const &e) {
+  } catch (std::exception const &e) {
     std::cout << e.what() << std::endl; 
   }
 
   std::cout << std::endl << "Trying create form with too low exec grade: " << std::endl;
   try {
     Form a1000("Nonexistent form", 149, 151);
-  } catch (Form::GradeTooLowException const &e) {
+  } catch (std::exception const &e) {
     std::cout << e.what() << std::endl; 
   }
 
   std::cout << std::endl << "Trying create form with too high sign grade: " << std::endl;
   try {
     Form a1000("Nonexistent form", 0, 1);
-  } catch (Form::GradeTooHighException const &e) {
+  } catch (std::exception const &e) {
     std::cout << e.what() << std::endl; 
   }
 
@@ -73,10 +73,7 @@ int main(void) {
   try {
     Form a1000("Nonexistent form", 151, 0);
   }
-  catch (Form::GradeTooLowException const &e) {
-    std::cout << e.what() << std::endl; 
-  }
-  catch (Form::GradeTooHighException const &e) {
+  catch (std::exception const &e) {
     std::cout << e.what() << std::endl; 
   }
 

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/09 02:50:50 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:33:16 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int main(void) {
   try {
     president = clerk;
   }
-  catch (Bureaucrat::OpOverloadException const& e) {
+  catch (std::exception const& e) {
     std::cout << e.what() << std::endl;
   }
 

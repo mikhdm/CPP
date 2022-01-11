@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/10 23:20:24 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/11 00:54:05 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:46:36 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ AForm* Intern::makeForm(std::string const& name, std::string const& target) {
   try {
     i = indexOf(names, strtolower(name));
   }
-  catch (OutOfRangeException const& e) {
+  catch (std::exception const& e) {
     std::cout << "Appropriate form has not been found for: " << name << std::endl; 
     return nullptr;
   }

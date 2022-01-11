@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/10 23:17:44 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 15:43:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,7 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, AForm& form) {
   try {
     b.executeForm(form);
   }
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
+  catch (std::exception const& e) {
     std::cout << e.what() << std::endl;
   }
 
@@ -43,13 +40,7 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, AForm& form) {
   try {
     b.executeForm(form);
   } 
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (RobotomyRequestForm::FailureException const& e) {
+  catch (std::exception const& e) {
     std::cout << e.what() << std::endl;
   }
 
@@ -58,13 +49,7 @@ void testForm(Bureaucrat& b, Bureaucrat& clerk, AForm& form) {
   try {
     clerk.executeForm(form);
   } 
-  catch (AForm::ExecutionForbiddenException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (AForm::GradeTooLowException const& e) {
-    std::cout << e.what() << std::endl;
-  }
-  catch (RobotomyRequestForm::FailureException const& e) {
+  catch (std::exception const& e) {
     std::cout << e.what() << std::endl;
   }
 }
