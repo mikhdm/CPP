@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/08 23:06:01 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/11 15:59:54 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/11 16:00:50 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ static void applyForm(Bureaucrat &b, AForm *form) {
 
 
 int main(void) {
+
+  std::srand(std::time(nullptr));
+
   Bureaucrat president("John", 1);
   Intern intern;
   AForm* form = nullptr;
