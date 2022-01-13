@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 19:55:16 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 20:32:46 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 20:38:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ int main(void) {
       std::cout << std::endl;
       delete base;
     }
-    Base *base = new X();
-    std::cout << "identify (test out of hierarchy class X): ";
-    identify(base);
+    Base *x = new X();
+    std::cout << "identify (test out of check class X): ";
+    identify(x);
     std::cout << std::endl;
-    delete base;
+    delete x;
   }
 
   std::cout << std::endl << "IDENTIFYING VIA REFERENCE: " << std::endl << std::endl;
@@ -46,11 +46,11 @@ int main(void) {
       std::cout << std::endl;
       delete base;
     }
-    Base *base = new X();
-    std::cout << "identify (test out of hierarchy class X): ";
-    identify(base);
+    Base *x = new X();
+    std::cout << "identify (test out of check class X): ";
+    identify(*x);
     std::cout << std::endl;
-    delete base;
+    delete x;
   }
   
   return (EXIT_SUCCESS);
