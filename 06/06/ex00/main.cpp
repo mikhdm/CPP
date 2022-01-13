@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 06:43:13 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:52:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,17 @@
 
 # define EDEFAULT 0
 
+// specify all needed type bounds
+namespace lim {
+  int const imax = std::numeric_limits<int>::max();
+  int const imin = std::numeric_limits<int>::min();
+  char const cmin = static_cast<char>(std::numeric_limits<unsigned char>::min());
+  char const cmax = std::numeric_limits<signed char>::max();
+  float const fmin = -std::numeric_limits<float>::max();
+  float const fmax = std::numeric_limits<float>::max(); 
+}
+
+
 enum Type {
   UNSET = -1,
   CHAR = 0,
@@ -28,6 +39,7 @@ enum Type {
   FLOAT = 2,
   DOUBLE = 3
 };
+
 
 typedef struct {
   bool c;
@@ -151,7 +163,6 @@ void print(Value* v, float f) {
 
 void print(Value* v) {
   std::string const impossible = "impossible";
-
   switch (v->btype) {
     case CHAR:
       print(v, v->c);
@@ -187,8 +198,8 @@ void print(Value* v) {
   }
 }
 
-// @brief Perform check on a string after '.' sign for float / double values
-bool floated(std::string const& residue) {
+// Performs check on a string after '.' sign for float / double values
+static bool floated(std::string const& residue) {
   if (!residue.empty()) {
     size_t const rsize = residue.length();
     for (size_t i = 0; i < rsize - 1; ++ i) {
@@ -202,31 +213,120 @@ bool floated(std::string const& residue) {
 }
 
 
-Value detect(std::string const& literal) {
-  size_t const size = literal.length();
-  char *end = nullptr;
+Value detect(std::string const& s, long v) {
   Value value;
+  char *end = nullptr;
+
+  init(&value);
+  if (errno == EDEFAULT) {
+    value.d = static_cast<double>(v);
+    value.state.d = true;
+    value.f = static_cast<float>(v);
+    value.state.f = true;
+    value.btype = FLOAT;
+
+    if (v >= lim::imin && v <= lim::imax) {
+      value.btype = INTEGER;
+      value.i = static_cast<int>(v);
+      value.state.i = true;
+    }
+    if (v >= lim::cmin && v <= lim::cmax) {
+      value.c = static_cast<char>(v);
+      value.state.c = true;
+    }
+    return value;
+  }
+  if (errno == ERANGE) {
+    errno = EDEFAULT;
+    double dv = std::strtod(s.c_str(), &end);
+    if (errno == ERANGE)
+      return value;
+    value.btype = DOUBLE;
+    value.d = dv;
+    value.state.d = true;
+    if (bounded(dv, lim::fmin, lim::fmax)) {
+      value.btype = FLOAT;
+      value.f = static_cast<float>(dv);
+      value.state.f = true;
+    }
+    return value;
+  }
+  return value;
+}
+
+
+Value detect(std::string const& literal, bool einval) {
+  Value value;
+  char *end = nullptr;
+  init(&value);
+  size_t const size = literal.length();
+
+  if (!einval)
+    return value;
+
+  bool charable = (size == 3) && (literal[0] == '\'') && (literal[2] == '\'');
+  // value is a char literal
+  if (charable) {
+    value.btype = CHAR;
+    value.c = literal[1];
+    value.i = static_cast<int>(value.c);
+    value.f = static_cast<float>(value.c);
+    value.d = static_cast<double>(value.c);
+    value.state.c = true;
+    value.state.i = true;
+    value.state.f = true;
+    value.state.d = true;
+  }
+  else {
+    errno = EDEFAULT;
+    std::string ss = literal;
+    double dv = std::strtod(ss.c_str(), &end);
+    bool convertible = (ss.length() == 3)
+                        || (ss.length() == 4 && (ss[0] == '+' || ss[0] == '-'))
+                        || ((ss.length() == 4) && (*end == 'f'))
+                        || (ss.length() == 5 && (ss[0] == '+' || ss[0] == '-')
+                            && (*end == 'f'));
+    bool isnan_ = isnan(dv);
+    bool isinf_ = isinf(dv);
+
+    if (!convertible)
+      return (value);
+
+    if (isnan_) {
+      value.d = dv;
+      value.f = static_cast<float>(dv);
+      value.btype = (*end == 'f') ? FLOAT : DOUBLE;
+      value.state.d = true;
+      value.state.f = true;
+    }
+    else if (isinf_) {
+      value.d = dv;
+      value.f = static_cast<float>(dv);
+      value.btype = (*end == 'f') ? FLOAT : DOUBLE;
+      value.state.d = true;
+      value.state.f = true;
+    }
+  }
+  return value;
+}
+
+
+Value detect(std::string const& literal) {
+  Value value;
+  char *end = nullptr;
   init(&value);
 
-  int const imax = std::numeric_limits<int>::max();
-  int const imin = std::numeric_limits<int>::min();
-  char const cmin = static_cast<char>(std::numeric_limits<unsigned char>::min());
-  char const cmax = std::numeric_limits<signed char>::max();
-  float const fmin = -std::numeric_limits<float>::max();
-  float const fmax = std::numeric_limits<float>::max(); 
-
   std::string s = literal;
+
   long v = std::strtol(s.c_str(), &end, 10);
 
   if (errno == EDEFAULT || errno == ERANGE) {
     // value partially converted & we found float or double (ex. 123.0...)
-
     if (*end && *end == '.') {
       errno = EDEFAULT;
 
       std::string ss = literal;
       std::string const residue = end + 1;
-
       //check correct residue of float / double value
       if (!floated(residue))
         return value;
@@ -236,147 +336,62 @@ Value detect(std::string const& literal) {
       // actual value is float due to 'f' symbol at the end and errno was not set
       if (errno == EDEFAULT && *end == 'f') {
         // out of float bounds, return value as unset
-        if (!bounded(dv, fmin, fmax))
+        if (!bounded(dv, lim::fmin, lim::fmax))
           return value;
-
-        // we are inside float bounds and actual value is float
+        // we are inside float bounds and actual value is float (due to 'f' symbol)
         value.btype = FLOAT;
         value.f = static_cast<float>(dv);
         value.state.f = true;
-
         // we are inside float then inside double bounds too
         value.d = dv;
         value.state.d = true;
         
         // check float is in integer bounds to acquire int
-        if (bounded(dv, imin, imax)) {
+        if (bounded(dv, lim::imin, lim::imax)) {
           value.i = static_cast<int>(dv);
           value.state.i = true;
         }
-
         // check char bounds as described in a subject
-        if (bounded(dv, cmin, cmax)) {
+        if (bounded(dv, lim::cmin, lim::cmax)) {
           value.c = static_cast<char>(dv);
           value.state.c = true;
         }
         return value;
       }
-
       // actual value is double
       if (errno == EDEFAULT && *end == '\0') {
-
         value.btype = DOUBLE;
         value.d = dv;
         value.state.d = true;
-
         // check double value inside float bounds
-        if (bounded(dv, fmin, fmax)) {
+        if (bounded(dv, lim::fmin, lim::fmax)) {
           value.f = static_cast<float>(dv);
           value.state.f = true;
         }
-
         // check double value inside integer bounds
-        if (bounded(dv, imin, imax)) {
+        if (bounded(dv, lim::imin, lim::imax)) {
           value.i = static_cast<int>(dv);
           value.state.i = true;
         }
         // check char bounds as described in a subject
-        if (bounded(dv, cmin, cmax)) {
+        if (bounded(dv, lim::cmin, lim::cmax)) {
           value.c = static_cast<char>(dv);
           value.state.c = true;
         }
         return value;
       }
-
       // literal is out of any appropriate bounds so we return unset value
       if (errno == ERANGE) {
         return (value);
       }
     }
     // value correctly converted to long or out of bounds with errno = ERANGE 
-    if (*end == '\0') {
-      if (errno == EDEFAULT) {
-        value.d = static_cast<double>(v);
-        value.state.d = true;
-        value.f = static_cast<float>(v);
-        value.state.f = true;
-        value.btype = FLOAT;
-
-        if (v >= imin && v <= imax) {
-          value.btype = INTEGER;
-          value.i = static_cast<int>(v);
-          value.state.i = true;
-        }
-        if (v >= cmin && v <= cmax) {
-          value.c = static_cast<char>(v);
-          value.state.c = true;
-        }
-        return value;
-      }
-      if (errno == ERANGE) {
-        errno = EDEFAULT;
-        double dv = std::strtod(literal.c_str(), &end);
-        if (errno == ERANGE)
-          return value;
-        value.btype = DOUBLE;
-        value.d = dv;
-        value.state.d = true;
-        if (bounded(dv, fmin, fmax)) {
-          value.btype = FLOAT;
-          value.f = static_cast<float>(dv);
-          value.state.f = true;
-        }
-        return value;
-      }
-    }
+    if (*end == '\0')
+      return detect(literal, v);
   }
-
-  // value not converted and we got text (ex. a, aaa, b123, --123, +++1)
-  if (errno == EINVAL) {
-    bool charable = (size == 3) && (literal[0] == '\'') && (literal[2] == '\'');
-    // value is a char literal
-    if (charable) {
-      value.btype = CHAR;
-      value.c = literal[1];
-      value.i = static_cast<int>(value.c);
-      value.f = static_cast<float>(value.c);
-      value.d = static_cast<double>(value.c);
-      value.state.c = true;
-      value.state.i = true;
-      value.state.f = true;
-      value.state.d = true;
-    }
-    else {
-      errno = EDEFAULT;
-      std::string ss = literal;
-      double dv = std::strtod(ss.c_str(), &end);
-      bool convertible = (ss.length() == 3)
-                        || (ss.length() == 4 && (ss[0] == '+' || ss[0] == '-'))
-                        || ((ss.length() == 4) && (*end == 'f'))
-                        || (ss.length() == 5 && (ss[0] == '+' || ss[0] == '-')
-                            && (*end == 'f'));
-      bool isnan_ = isnan(dv);
-      bool isinf_ = isinf(dv);
-
-      if (!convertible)
-        return (value);
-
-      if (isnan_) {
-        value.d = dv;
-        value.f = static_cast<float>(dv);
-        value.btype = (*end == 'f') ? FLOAT : DOUBLE;
-        value.state.d = true;
-        value.state.f = true;
-      }
-      else if (isinf_) {
-        value.d = dv;
-        value.f = static_cast<float>(dv);
-        value.btype = (*end == 'f') ? FLOAT : DOUBLE;
-        value.state.d = true;
-        value.state.f = true;
-      }
-    }
-  }
+  // value is not converted properly and we got text (ex. a, aaa, b123, --123, +++1)
+  if (errno == EINVAL)
+    return detect(literal, errno == EINVAL); 
   return value;
 }
 
