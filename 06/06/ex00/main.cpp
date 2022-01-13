@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 17:57:14 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:59:35 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -289,20 +289,17 @@ Value detect(std::string const& literal, bool einval) {
                         || ((ss.length() == 4) && (*end == 'f'))
                         || (ss.length() == 5 && (ss[0] == '+' || ss[0] == '-')
                             && (*end == 'f'));
-    bool isnan_ = isnan(dv);
-    bool isinf_ = isinf(dv);
 
     if (!convertible)
       return (value);
-
-    if (isnan_) {
+    if (isnan(dv)) {
       value.d = dv;
       value.f = static_cast<float>(dv);
       value.btype = (*end == 'f') ? FLOAT : DOUBLE;
       value.state.d = true;
       value.state.f = true;
     }
-    else if (isinf_) {
+    else if (isinf(dv)) {
       value.d = dv;
       value.f = static_cast<float>(dv);
       value.btype = (*end == 'f') ? FLOAT : DOUBLE;
