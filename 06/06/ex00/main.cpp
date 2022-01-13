@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 17:59:35 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 18:01:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static bool printable(char const c) {
   return true;
 }
 
+
 static bool equal(float l, float r) {
   return std::abs(l - r) <= std::numeric_limits<float>::epsilon(); 
 }
@@ -108,6 +109,7 @@ static bool bounded(double dv, char min, char max) {
   return ((dv > cmin && !equal(dv, cmin)) || equal(dv, cmin))
           && ((dv < cmax && !equal(dv, cmax)) || equal(dv, cmax)); 
 } 
+
 
 // Polymorphic function to check float bounds
 static bool bounded(double dv, float min, float max) {
@@ -146,6 +148,7 @@ void init(Value* v) {
 }
 
 
+// Polymorphic function to print char
 void print(Value* v, char c) {
   std::cout << "char: ";
   if (v->state.c) {
@@ -159,6 +162,7 @@ void print(Value* v, char c) {
 } 
 
 
+// Polymorphic function to print integer
 void print(Value* v, int i) {
   std::cout << "int: ";
   if (v->state.i)
@@ -168,6 +172,7 @@ void print(Value* v, int i) {
 }
 
 
+// Polymorphic function to print float
 void print(Value* v, float f) {
   std::cout << "float: ";
   if (v->state.f) {
@@ -178,6 +183,7 @@ void print(Value* v, float f) {
 }
 
 
+// Polymorphic function to print all
 void print(Value* v) {
   std::string const impossible = "impossible";
   switch (v->btype) {
