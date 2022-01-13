@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/13 18:23:42 by rmander           #+#    #+#              #
-#    Updated: 2022/01/13 18:24:06 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/13 18:30:27 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = serialize
 CC = clang++
 CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wc++98-compat-pedantic
 
-SRCS = ./main.cpp
+SRCS = ./main.cpp \
+	   ./Data.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
