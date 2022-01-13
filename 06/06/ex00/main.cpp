@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 17:55:15 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:57:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ static bool equal(double l, double r) {
 }
 
 
+// Polymorphic function to check integer bounds
 static bool bounded(double dv, int min, int max) {
   double const imin = static_cast<double>(min);
   double const imax = static_cast<double>(max);
@@ -100,6 +101,7 @@ static bool bounded(double dv, int min, int max) {
 } 
 
 
+// Polymorphic function to check char bounds (0 - 127)
 static bool bounded(double dv, char min, char max) {
   double const cmin = static_cast<double>(min);
   double const cmax = static_cast<double>(max);
@@ -107,13 +109,28 @@ static bool bounded(double dv, char min, char max) {
           && ((dv < cmax && !equal(dv, cmax)) || equal(dv, cmax)); 
 } 
 
-
+// Polymorphic function to check float bounds
 static bool bounded(double dv, float min, float max) {
   double const fmin = static_cast<double>(min);
   double const fmax = static_cast<double>(max);
   return ((dv > fmin && !equal(dv, fmin)) || equal(dv, fmin))
           && ((dv < fmax && !equal(dv, fmax)) || equal(dv, fmax)); 
 } 
+
+
+// Performs check on a string after '.' sign for float / double values
+static bool floated(std::string const& residue) {
+  if (!residue.empty()) {
+    size_t const rsize = residue.length();
+    for (size_t i = 0; i < rsize - 1; ++ i) {
+      if (!std::isdigit(residue[i]))
+        return false;
+    }
+    if (!std::isdigit(residue[rsize - 1]) && (residue[rsize - 1] != 'f'))
+      return false;
+  }
+  return true;
+}
 
 
 void init(Value* v) {
@@ -196,20 +213,6 @@ void print(Value* v) {
 
       break ;
   }
-}
-
-// Performs check on a string after '.' sign for float / double values
-static bool floated(std::string const& residue) {
-  if (!residue.empty()) {
-    size_t const rsize = residue.length();
-    for (size_t i = 0; i < rsize - 1; ++ i) {
-      if (!std::isdigit(residue[i]))
-        return false;
-    }
-    if (!std::isdigit(residue[rsize - 1]) && (residue[rsize - 1] != 'f'))
-      return false;
-  }
-  return true;
 }
 
 
