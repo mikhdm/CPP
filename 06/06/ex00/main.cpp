@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 18:01:33 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 18:03:59 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ static bool printable(char const c) {
   if ((c >= 0 && c <= 31) || c == 127)
     return false;
   return true;
-}
-
-
-static bool equal(float l, float r) {
-  return std::abs(l - r) <= std::numeric_limits<float>::epsilon(); 
 }
 
 
