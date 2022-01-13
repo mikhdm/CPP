@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 05:47:05 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 06:38:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void print(Value* v, int i) {
 void print(Value* v, float f) {
   std::cout << "float: ";
   if (v->state.f) {
-    std::cout << std::fixed << std::setprecision(8) << f << "f" << std::endl;
+    std::cout << std::fixed << std::setprecision(10) << f << "f" << std::endl;
   }
   else
     std::cout << "impossible" << std::endl;
@@ -170,17 +170,11 @@ void print(Value* v) {
       break ;
 
     case FLOAT:
-      print(v, v->c);
-      print(v, v->i);
-      print(v, v->f);
-      std::cout << "double: " << std::fixed << std::setprecision(10) << v->d << std::endl;
-      break ;
-      
     case DOUBLE:
       print(v, v->c);
       print(v, v->i);
       print(v, v->f);
-      std::cout << "double: " << std::fixed << std::setprecision(10) << v->d << std::endl;
+      std::cout << "double: " << std::fixed << v->d << std::endl;
       break ;
 
     default:
@@ -228,9 +222,10 @@ Value detect(std::string const& literal) {
 
   if (errno == EDEFAULT || errno == ERANGE) {
     // value partially converted & we found float or double (ex. 123.0...)
-    errno = EDEFAULT;
 
     if (*end && *end == '.') {
+      errno = EDEFAULT;
+
       std::string ss = literal;
       std::string const residue = end + 1;
 
@@ -309,13 +304,41 @@ Value detect(std::string const& literal) {
         return (value);
       }
     }
-    // value correctly converted to long
-    if (!*end) {
-      // value is out of integer bounds
-      if (v < std::numeric_limits<int>::min()
-          || v > std::numeric_limits<int>::max()) {
-      }
+    // value correctly converted to long or out of bounds with errno = ERANGE 
+    if (*end == '\0') {
+      if (errno == EDEFAULT) {
+        value.d = static_cast<double>(v);
+        value.state.d = true;
+        value.f = static_cast<float>(v);
+        value.state.f = true;
+        value.btype = FLOAT;
 
+        if (v >= imin && v <= imax) {
+          value.btype = INTEGER;
+          value.i = static_cast<int>(v);
+          value.state.i = true;
+        }
+        if (v >= cmin && v <= cmax) {
+          value.c = static_cast<char>(v);
+          value.state.c = true;
+        }
+        return value;
+      }
+      if (errno == ERANGE) {
+        errno = EDEFAULT;
+        double dv = std::strtod(literal.c_str(), &end);
+        if (errno == ERANGE)
+          return value;
+        value.btype = DOUBLE;
+        value.d = dv;
+        value.state.d = true;
+        if (bounded(dv, fmin, fmax)) {
+          value.btype = FLOAT;
+          value.f = static_cast<float>(dv);
+          value.state.f = true;
+        }
+        return value;
+      }
     }
   }
 
