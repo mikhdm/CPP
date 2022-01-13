@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 05:38:15 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 05:47:05 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void init(Value* v) {
   v->state.f = false;
   v->state.d = false;
   v->state.i = false;
-  v->state.zpad = false;
   v->btype = UNSET;
 }
 
@@ -143,7 +142,7 @@ void print(Value* v, int i) {
 void print(Value* v, float f) {
   std::cout << "float: ";
   if (v->state.f) {
-    std::cout << std::fixed << std::setprecision(10) << f << "f" << std::endl;
+    std::cout << std::fixed << std::setprecision(8) << f << "f" << std::endl;
   }
   else
     std::cout << "impossible" << std::endl;
@@ -209,14 +208,6 @@ bool floated(std::string const& residue) {
 }
 
 
-bool zpadded(double dv, double tol) {
-  int integer = static_cast<int>(dv);
-  double residue = dv - static_cast<int>(integer);
-  if ((residue > tol) && !equal(residue, tol))
-    return false;
-  return true;
-}
-
 Value detect(std::string const& literal) {
   size_t const size = literal.length();
   char *end = nullptr;
@@ -269,10 +260,6 @@ Value detect(std::string const& literal) {
         value.f = static_cast<float>(dv);
         value.state.f = true;
 
-        /* if (zpadded(dv, std::numeric_limits<double>::epsilon())) { */
-        /*   value.state.zpad = true; */
-        /* } */
-
         // we are inside float then inside double bounds too
         value.d = dv;
         value.state.d = true;
@@ -297,10 +284,6 @@ Value detect(std::string const& literal) {
         value.btype = DOUBLE;
         value.d = dv;
         value.state.d = true;
-
-        /* if (zpadded(dv, std::numeric_limits<double>::epsilon())) { */
-        /*   value.state.zpad = true; */
-        /* } */
 
         // check double value inside float bounds
         if (bounded(dv, fmin, fmax)) {
