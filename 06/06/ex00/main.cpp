@@ -6,19 +6,46 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 03:20:29 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 05:38:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cstdlib>
 #include <limits>
 #include <iostream>
+#include <iomanip>
 #include <cerrno>
 #include <cctype>
 
 #include <math.h>
 
 # define EDEFAULT 0
+
+enum Type {
+  UNSET = -1,
+  CHAR = 0,
+  INTEGER = 1,
+  FLOAT = 2,
+  DOUBLE = 3
+};
+
+typedef struct {
+  bool c;
+  bool f;
+  bool d;
+  bool i;
+  bool zpad;
+} State;
+
+
+typedef struct {
+  char c;
+  float f;
+  double d;
+  int i;
+  Type btype;
+  State state;
+} Value;
 
 
 void debugtol(long v, std::string const &s, char *end) {
@@ -31,7 +58,7 @@ void debugtol(long v, std::string const &s, char *end) {
 
 void debugtod(double dv, std::string const &ss, char *end) {
   std::cout << "strtod: " << std::endl;
-  std::cout << "  return: " << dv << std::endl;
+  std::cout << "  return: " << std::setprecision(10) <<  dv << std::endl;
   std::cout << "  str_end: " << ((*end == '\0') ? '0' : *end) << std::endl;
   std::cout << "  str: " << ((*ss.c_str() == '\0') ? '0' : *ss.c_str()) << std::endl;
 }
@@ -77,32 +104,6 @@ static bool bounded(double dv, float min, float max) {
 } 
 
 
-enum Type {
-  UNSET = -1,
-  CHAR = 0,
-  INTEGER = 1,
-  FLOAT = 2,
-  DOUBLE = 3
-};
-
-typedef struct {
-  bool c;
-  bool f;
-  bool d;
-  bool i;
-} State;
-
-
-typedef struct {
-  char c;
-  float f;
-  double d;
-  int i;
-  Type btype;
-  State state;
-} Value;
-
-
 void init(Value* v) {
   v->i = 0;
   v->c = 0;
@@ -112,6 +113,7 @@ void init(Value* v) {
   v->state.f = false;
   v->state.d = false;
   v->state.i = false;
+  v->state.zpad = false;
   v->btype = UNSET;
 }
 
@@ -140,8 +142,9 @@ void print(Value* v, int i) {
 
 void print(Value* v, float f) {
   std::cout << "float: ";
-  if (v->state.f)
-    std::cout << f << "f" << std::endl;
+  if (v->state.f) {
+    std::cout << std::fixed << std::setprecision(10) << f << "f" << std::endl;
+  }
   else
     std::cout << "impossible" << std::endl;
 }
@@ -154,39 +157,65 @@ void print(Value* v) {
     case CHAR:
       print(v, v->c);
       print(v, v->i);
-      std::cout << "float: " << v->f << ".0f" << std::endl;
-      std::cout << "double: " << v->d << ".0" << std::endl;
+      std::cout << "float: " << std::fixed << std::setprecision(1) << v->f << "f" << std::endl;
+      std::cout << "double: " << std::fixed << std::setprecision(1) << v->d << std::endl;
+
       break ;
 
     case INTEGER:
       print(v, v->c);
       print(v, v->i);
-      std::cout << "float: " << v->f << ".0f" << std::endl;
-      std::cout << "double: " << v->d << ".0" << std::endl;
+      std::cout << "float: " << std::fixed << std::setprecision(1) << v->f << "f" << std::endl;
+      std::cout << "double: " << std::fixed << std::setprecision(1) << v->d << std::endl;
+
       break ;
 
     case FLOAT:
       print(v, v->c);
       print(v, v->i);
       print(v, v->f);
-      std::cout << "double: " << v->d << std::endl;
+      std::cout << "double: " << std::fixed << std::setprecision(10) << v->d << std::endl;
       break ;
       
     case DOUBLE:
       print(v, v->c);
       print(v, v->i);
       print(v, v->f);
-      std::cout << "double: " << v->d << std::endl;
+      std::cout << "double: " << std::fixed << std::setprecision(10) << v->d << std::endl;
       break ;
+
     default:
       std::cout << "char: " << impossible << std::endl;
       std::cout << "int: " << impossible << std::endl;
       std::cout << "float: " << impossible << std::endl;
       std::cout << "double: " << impossible << std::endl;
+
       break ;
   }
 }
 
+// @brief Perform check on a string after '.' sign for float / double values
+bool floated(std::string const& residue) {
+  if (!residue.empty()) {
+    size_t const rsize = residue.length();
+    for (size_t i = 0; i < rsize - 1; ++ i) {
+      if (!std::isdigit(residue[i]))
+        return false;
+    }
+    if (!std::isdigit(residue[rsize - 1]) && (residue[rsize - 1] != 'f'))
+      return false;
+  }
+  return true;
+}
+
+
+bool zpadded(double dv, double tol) {
+  int integer = static_cast<int>(dv);
+  double residue = dv - static_cast<int>(integer);
+  if ((residue > tol) && !equal(residue, tol))
+    return false;
+  return true;
+}
 
 Value detect(std::string const& literal) {
   size_t const size = literal.length();
@@ -212,6 +241,12 @@ Value detect(std::string const& literal) {
 
     if (*end && *end == '.') {
       std::string ss = literal;
+      std::string const residue = end + 1;
+
+      //check correct residue of float / double value
+      if (!floated(residue))
+        return value;
+
       double dv = std::strtod(ss.c_str(), &end);
 
       debugtod(dv, ss, end);
@@ -228,10 +263,15 @@ Value detect(std::string const& literal) {
         if (outbound) {
           return value;
         }
+
         // we are inside float bounds and actual value is float
         value.btype = FLOAT;
         value.f = static_cast<float>(dv);
         value.state.f = true;
+
+        /* if (zpadded(dv, std::numeric_limits<double>::epsilon())) { */
+        /*   value.state.zpad = true; */
+        /* } */
 
         // we are inside float then inside double bounds too
         value.d = dv;
@@ -250,12 +290,17 @@ Value detect(std::string const& literal) {
         }
         return value;
       }
-      
+
       // actual value is double
       if (errno == EDEFAULT && *end == '\0') {
+
         value.btype = DOUBLE;
         value.d = dv;
         value.state.d = true;
+
+        /* if (zpadded(dv, std::numeric_limits<double>::epsilon())) { */
+        /*   value.state.zpad = true; */
+        /* } */
 
         // check double value inside float bounds
         if (bounded(dv, fmin, fmax)) {
