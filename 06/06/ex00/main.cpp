@@ -6,9 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 18:08:47 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 18:17:46 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "Value.hpp"
 
 #include <cstdlib>
 #include <limits>
@@ -19,7 +21,6 @@
 
 #include <math.h>
 
-# define EDEFAULT 0
 
 // specify all needed type bounds
 namespace lim {
@@ -30,34 +31,6 @@ namespace lim {
   float const fmin = -std::numeric_limits<float>::max();
   float const fmax = std::numeric_limits<float>::max(); 
 }
-
-
-enum Type {
-  UNSET = -1,
-  CHAR = 0,
-  INTEGER = 1,
-  FLOAT = 2,
-  DOUBLE = 3
-};
-
-
-typedef struct {
-  bool c;
-  bool f;
-  bool d;
-  bool i;
-  bool zpad;
-} State;
-
-
-typedef struct {
-  char c;
-  float f;
-  double d;
-  int i;
-  Type btype;
-  State state;
-} Value;
 
 
 void debugtol(long v, std::string const &s, char *end) {
