@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/12 00:11:26 by rmander           #+#    #+#              #
-#    Updated: 2022/01/12 23:30:49 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/13 18:24:55 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = convert
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wc++98-compat-pedantic -Wno-unused
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wconversion -Wsign-conversion -Wshadow -Wc++98-compat-pedantic
 
 SRCS = ./main.cpp
 
