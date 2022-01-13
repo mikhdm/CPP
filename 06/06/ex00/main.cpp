@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 06:38:47 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 06:40:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -240,15 +240,18 @@ Value detect(std::string const& literal) {
       // actual value is float due to 'f' symbol at the end and errno was not set
       if (errno == EDEFAULT && *end == 'f') {
 
-        bool outbound = (dv < static_cast<double>(fmin)
-                          && !equal(dv, static_cast<double>(fmin)))
-                        || (dv > static_cast<double>(fmax)
-                              && !equal(dv, static_cast<double>(fmax)));
+        /* bool outbound = (dv < static_cast<double>(fmin) */
+        /*                   && !equal(dv, static_cast<double>(fmin))) */
+        /*                 || (dv > static_cast<double>(fmax) */
+        /*                       && !equal(dv, static_cast<double>(fmax))); */
+
+        /* if (outbound) { */
+        /*   return value; */
+        /* } */
 
         // out of float bounds, return value as unset
-        if (outbound) {
+        if (!bounded(dv, fmin, fmax))
           return value;
-        }
 
         // we are inside float bounds and actual value is float
         value.btype = FLOAT;
