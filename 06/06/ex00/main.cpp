@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 17:52:35 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 17:55:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -381,9 +381,8 @@ Value detect(std::string const& literal) {
         return value;
       }
       // literal is out of any appropriate bounds so we return unset value
-      if (errno == ERANGE) {
+      if (errno == ERANGE)
         return (value);
-      }
     }
     // value correctly converted to long or out of bounds with errno = ERANGE 
     if (*end == '\0')
@@ -397,8 +396,7 @@ Value detect(std::string const& literal) {
 
 
 int main(int argc, char **argv) {
-  if (argc != 2)
-  {
+  if (argc != 2) {
     std::cerr << "Error: invalid number of arguments." << std::endl;
     return (EXIT_FAILURE);
   }
