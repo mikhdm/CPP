@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 00:12:36 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/13 18:22:12 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/13 22:25:44 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <cerrno>
 #include <cctype>
+#include <cfloat>
 
 #include <math.h>
 
@@ -30,22 +31,8 @@ namespace lim {
   char const cmax = std::numeric_limits<signed char>::max();
   float const fmin = -std::numeric_limits<float>::max();
   float const fmax = std::numeric_limits<float>::max(); 
-}
-
-
-void debugtol(long v, std::string const &s, char *end) {
-  std::cout << "strtol: " << std::endl;
-  std::cout << "  return: " << v << std::endl;
-  std::cout << "  str_end: " << ((*end == '\0') ? "\\0" : end) << std::endl;
-  std::cout << "  str: " << ((*s.c_str() == '\0') ? "\\0" : s.c_str()) << std::endl;
-}
-
-
-void debugtod(double dv, std::string const &ss, char *end) {
-  std::cout << "strtod: " << std::endl;
-  std::cout << "  return: " << std::setprecision(10) <<  dv << std::endl;
-  std::cout << "  str_end: " << ((*end == '\0') ? '0' : *end) << std::endl;
-  std::cout << "  str: " << ((*ss.c_str() == '\0') ? '0' : *ss.c_str()) << std::endl;
+  size_t const fprecmax = FLT_DIG;
+  size_t const dprecmax = DBL_DIG;
 }
 
 
@@ -53,6 +40,11 @@ static bool printable(char const c) {
   if ((c >= 0 && c <= 31) || c == 127)
     return false;
   return true;
+}
+
+
+static size_t min(size_t l, size_t r) {
+  return (l < r) ? l : r;
 }
 
 
@@ -103,7 +95,7 @@ static bool floated(std::string const& residue) {
 }
 
 
-void init(Value* v) {
+static void init(Value* v) {
   v->i = 0;
   v->c = 0;
   v->d = 0;
@@ -112,6 +104,8 @@ void init(Value* v) {
   v->state.f = false;
   v->state.d = false;
   v->state.i = false;
+  v->state.fprec = 1;
+  v->state.dprec = 1;
   v->btype = UNSET;
 }
 
@@ -144,7 +138,9 @@ void print(Value* v, int i) {
 void print(Value* v, float f) {
   std::cout << "float: ";
   if (v->state.f) {
-    std::cout << std::fixed << std::setprecision(10) << f << "f" << std::endl;
+    std::cout << std::fixed
+      << std::setprecision(static_cast<int>(v->state.fprec))
+      << f << "f" << std::endl;
   }
   else
     std::cout << "impossible" << std::endl;
@@ -158,16 +154,20 @@ void print(Value* v) {
     case CHAR:
       print(v, v->c);
       print(v, v->i);
-      std::cout << "float: " << std::fixed << std::setprecision(1) << v->f << "f" << std::endl;
-      std::cout << "double: " << std::fixed << std::setprecision(1) << v->d << std::endl;
+      std::cout << "float: " << std::fixed
+        << std::setprecision(1) << v->f << "f" << std::endl;
+      std::cout << "double: " << std::fixed
+        << std::setprecision(1) << v->d << std::endl;
 
       break ;
 
     case INTEGER:
       print(v, v->c);
       print(v, v->i);
-      std::cout << "float: " << std::fixed << std::setprecision(1) << v->f << "f" << std::endl;
-      std::cout << "double: " << std::fixed << std::setprecision(1) << v->d << std::endl;
+      std::cout << "float: " << std::fixed
+        << std::setprecision(1) << v->f << "f" << std::endl;
+      std::cout << "double: " << std::fixed
+        << std::setprecision(1) << v->d << std::endl;
 
       break ;
 
@@ -176,7 +176,10 @@ void print(Value* v) {
       print(v, v->c);
       print(v, v->i);
       print(v, v->f);
-      std::cout << "double: " << std::fixed << v->d << std::endl;
+      std::cout << "double: " << std::fixed
+        << std::setprecision(static_cast<int>(v->state.dprec))
+        << v->d << std::endl;
+
       break ;
 
     default:
@@ -263,7 +266,6 @@ Value detect(std::string const& literal, bool einval) {
                         || ((ss.length() == 4) && (*end == 'f'))
                         || (ss.length() == 5 && (ss[0] == '+' || ss[0] == '-')
                             && (*end == 'f'));
-
     if (!convertible)
       return (value);
     if (isnan(dv)) {
@@ -282,6 +284,15 @@ Value detect(std::string const& literal, bool einval) {
     }
   }
   return value;
+}
+
+size_t prec(std::string const& s, bool floated) {
+  size_t dot = s.find(".");
+  if (dot == std::string::npos) {
+    return 0;
+  }
+  size_t last = floated ? s.find("f") : s.length();
+  return s.substr(dot + 1, last - (dot + 1)).length();
 }
 
 
@@ -312,10 +323,21 @@ Value detect(std::string const& literal) {
         // out of float bounds, return value as unset
         if (!bounded(dv, lim::fmin, lim::fmax))
           return value;
+
+        // setup precision 
+        size_t precision = prec(literal, true);
+        value.state.fprec = min(
+            (precision > 0) ? precision : value.state.fprec,
+            lim::fprecmax);
+        value.state.dprec = min(
+            (precision > 0) ? precision : value.state.dprec,
+            lim::dprecmax);
+
         // we are inside float bounds and actual value is float (due to 'f' symbol)
         value.btype = FLOAT;
         value.f = static_cast<float>(dv);
         value.state.f = true;
+
         // we are inside float then inside double bounds too
         value.d = dv;
         value.state.d = true;
@@ -334,6 +356,16 @@ Value detect(std::string const& literal) {
       }
       // actual value is double
       if (errno == EDEFAULT && *end == '\0') {
+        
+        // setup precision 
+        size_t precision = prec(literal, false);
+        value.state.fprec = min(
+            (precision > 0) ? precision : value.state.fprec,
+            lim::fprecmax);
+        value.state.dprec = min(
+            (precision > 0) ? precision : value.state.dprec,
+            lim::dprecmax);
+
         value.btype = DOUBLE;
         value.d = dv;
         value.state.d = true;
