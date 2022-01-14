@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 20:31:37 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/06 19:28:52 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 23:14:15 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ Dog::~Dog(void) {
 }
 
 
-Dog::Dog(Dog const& instance) : Animal("Dog") {
+Dog::Dog(Dog const& instance) : Animal("Dog"), brain(new Brain()) {
   if (this == &instance)
     return ;
   *this = instance;
@@ -38,7 +38,6 @@ Dog& Dog::operator=(Dog const& instance) {
   if (this == &instance)
     return *this;
   type = instance.getType();
-  brain = new Brain();
   Brain const* brain_from = instance.getBrain();
   *brain  = *brain_from;
   return *this;

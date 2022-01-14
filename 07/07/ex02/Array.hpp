@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:16:34 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/14 20:29:33 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 23:05:24 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 # define ARRAY_HPP
 
 #include <exception>
-
 
 template <typename T>
 class Array {
@@ -37,13 +36,13 @@ class Array {
 
 
 template <typename T>
-Array<T>::Array(void) : _data(new T[0]), _size(0) {}
+Array<T>::Array(void) : _size(0), _data(new T[0]) {}
 
 
 // C++03 allowed value initialization 
 // via call new T[N]() <- braces add default values instead of garbage values
 template <typename T>
-Array<T>::Array(unsigned int n) : _data(new T[n]), _size(n) {
+Array<T>::Array(unsigned int n) : _size(n), _data(new T[n]) {
   for (unsigned int i = 0; i < n; ++i) {
     _data[i] = 0;
   } 
@@ -58,10 +57,22 @@ Array<T>::~Array(void) {
 
 template <typename T>
 Array<T>::Array(Array<T> const& instance) :
-  _data(new T[instance.size()]), _size(instance.size()) {
+  _size(instance.size()), _data(new T[instance.size()]) {
   for (unsigned int i = 0; i < _size; ++i) {
     _data[i] = instance[i];
-  } 
+  }
+}
+
+
+template <typename T>
+Array<T>& Array<T>::operator=(Array<T> const& instance) {
+  if (this == &instance) {
+    return *this;
+  }
+
+  for (unsigned int i = 0; i < instance.size(); ++i) {
+
+  }
 }
 
 
