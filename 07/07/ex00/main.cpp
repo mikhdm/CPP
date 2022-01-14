@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:00:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/14 18:18:02 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 18:55:32 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,6 @@ int main(void) {
         std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
         std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
     }
+
     return (0);
 }
