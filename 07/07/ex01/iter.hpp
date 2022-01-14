@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 18:19:27 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/14 19:14:41 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 19:15:38 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void iter(T* arr, size_t const sz, void (*func)(T const&)) {
 } 
 
 
-// helper function to test
+// helper function for testing
 
 template <typename T>
 void sq(T const& v) {
