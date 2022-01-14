@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 14:00:26 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/14 18:04:49 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 18:16:01 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,46 +16,11 @@
 
 #include "whatever.hpp"
 
-// special for this test only
+// special vector<int> overload for this test only
+
 std::ostream& operator<<(std::ostream& o, std::vector<int> const& v) {
     o << v[0];
     return o;
-}
-
-
-template <typename T>
-void test(T& lhs, T& rhs) {
-    std::cout << "swap: " << std::endl; 
-    std::cout << "  before: "
-        <<  "(" << lhs << ", " << rhs << ")" << std::endl;
-
-    ::swap(lhs, rhs);
-    std::cout << "  after:  "
-        <<  "(" << lhs << ", " << rhs << ")" << std::endl << std::endl;
-}
-
-
-template <>
-void test<float>(float& lhs, float& rhs) {
-    std::cout << "swap: " << std::endl; 
-    std::cout << "  before: "
-        <<  "(" << std::fixed << std::setprecision(1)
-        << lhs << ", " << rhs << ")" << std::endl;
-
-    ::swap(lhs, rhs);
-    std::cout << "  after:  "
-        <<  "(" << std::fixed << std::setprecision(1)
-        << lhs << ", " << rhs << ")" << std::endl << std::endl;
-}
-
-
-template <typename T>
-void test(T const& lhs, T const& rhs, std::string const& ty) {
-    std::cout << "lhs: " << lhs <<", rhs = " << rhs << std::endl; 
-    if (ty == "min")
-        std::cout << "min( lhs, rhs ) = " << ::min( lhs, rhs ) << std::endl;
-    if (ty == "max")
-        std::cout << "max( lhs, rhs ) = " << ::max( lhs, rhs ) << std::endl;
 }
 
 
@@ -78,6 +43,8 @@ int main(void) {
     
     test(il, ir, "min"); 
     test(fl, fr, "max"); 
+    
+    std::cout << std::endl; 
 
     std::cout << "Subject: " << std::endl;
     {
