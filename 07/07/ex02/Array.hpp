@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:16:34 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/14 23:05:24 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/14 23:54:28 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ class Array {
   Array<T>(Array<T> const& instance);
   Array<T>& operator=(Array<T> const& instance);
 
-  T& operator[](unsigned int i);
+  T& operator[](unsigned int const i);
+  T const& operator[](unsigned int const i) const;
 
   unsigned int size(void) const; 
  private:
@@ -58,9 +59,7 @@ Array<T>::~Array(void) {
 template <typename T>
 Array<T>::Array(Array<T> const& instance) :
   _size(instance.size()), _data(new T[instance.size()]) {
-  for (unsigned int i = 0; i < _size; ++i) {
-    _data[i] = instance[i];
-  }
+  *this = instance;
 }
 
 
@@ -69,18 +68,33 @@ Array<T>& Array<T>::operator=(Array<T> const& instance) {
   if (this == &instance) {
     return *this;
   }
-
   for (unsigned int i = 0; i < instance.size(); ++i) {
-
+    _data[i] = instance[i];
   }
+  return *this;
 }
 
 
 template <typename T>
-T& Array<T>::operator[](unsigned int i) {
+T& Array<T>::operator[](unsigned int const i) {
   if (i >= _size)
     throw std::exception();
   return _data[i];
 }
+
+
+template <typename T>
+T const& Array<T>::operator[](unsigned int const i) const {
+  if (i >= _size)
+    throw std::exception();
+  return _data[i];
+}
+
+
+template <typename T>
+unsigned int Array<T>::size(void) const {
+  return _size;
+}
+
 
 # endif

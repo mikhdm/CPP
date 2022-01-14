@@ -6,7 +6,7 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/14 19:16:39 by rmander           #+#    #+#              #
-#    Updated: 2022/01/14 19:17:39 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/14 23:39:29 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,10 +25,10 @@ all: $(NAME)
 -include $(DEPS)
 
 $(NAME): $(OBJS)
-	$(CC) $(CPPFLAGS) -I. $^ -o $@
+	$(CC) $(CPPFLAGS) -I . $^ -o $@
 
 %.o: %.cpp
-	$(CC) $(CPPFLAGS) -I. -c $< -o $@
+	$(CC) $(CPPFLAGS) -I . -c $< -o $@
 
 clean:
 	rm -f $(OBJS)
