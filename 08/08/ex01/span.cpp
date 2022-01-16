@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:39:28 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 05:02:07 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 18:02:03 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,10 @@ long Span::shortestSpan(void) const {
     throw InsufficientDataException();
   Span::const_iter_type ib = _data.begin();
   Span::const_iter_type ie = _data.end();
-  long min = *(ib + 1) - *ib;
+  long min = std::abs(*(ib + 1) - *ib);
   long curr = min;
-
   for (Span::const_iter_type it = ib + 2; it != ie; ++it) {
-    curr = *it - *(it - 1);
+    curr = std::abs(*it - *(it - 1));
     if (curr <= min) {
       min = curr;
     }

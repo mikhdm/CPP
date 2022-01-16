@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:54:35 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 05:03:02 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 18:15:17 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,19 +107,25 @@ int main(void) {
     int const imax = std::numeric_limits<int>::max();
 
     std::cout << "Testing shortest / longest span (base): " << std::endl;
-    Span sp(5);
-    for (Span::size_type i = 0; i < sp.capacity(); ++i) {
-      sp.addNumber(rand() % 10);
-    } 
+    Span sp(6);
+
+    sp.addNumber(imax);
+    sp.addNumber(imin + 1);
+    sp.addNumber(imax - 1);
+    sp.addNumber(imin + 2);
+    sp.addNumber(imax - 1);
+    sp.addNumber(imin + 3);
+
     std::cout << " " << sp << std::endl;  
     std::cout << " shortest span: " << sp.shortestSpan() << std::endl;
     std::cout << " longest span: " << sp.longestSpan() << std::endl;
 
+    // ----
 
     std::cout << "Testing shortest / longest span (very big): " << std::endl;
-    Span sp2(10000000);
-    std::vector<int> sp2mirror(10000000);
 
+    Span sp2(100000);
+    std::vector<int> sp2mirror(100000);
     for (std::vector<int>::iterator it = sp2mirror.begin(); it != sp2mirror.end(); ++it) {
       *it = std::rand() % imax + imin;
     }
@@ -129,6 +135,8 @@ int main(void) {
     std::cout << " max: " << *std::max_element(sp2.begin(), sp2.end()) << std::endl;
     std::cout << " shortest span: " << sp2.shortestSpan() << std::endl;
     std::cout << " longest span: " << sp2.longestSpan() << std::endl;
+
+    // ----
 
     std::cout << "Testing shortest / longest span (too small span): " << std::endl;
     Span sp3(1);
