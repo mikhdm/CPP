@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/14 19:16:34 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/15 00:21:21 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 20:48:48 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ Array<T>::Array(void) : _size(0), _data(new T[0]) {
 template <typename T>
 Array<T>::Array(unsigned int n) : _size(n), _data(new T[n]) {
   for (unsigned int i = 0; i < n; ++i) {
-    _data[i] = 0;
+    _data[i] = T();
   } 
   std::cout << "call: Array(" << _size << ")" << std::endl;
 }
