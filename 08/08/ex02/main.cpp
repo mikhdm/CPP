@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:07:29 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 06:58:43 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 07:00:04 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ int main(void) {
 
     MutantStack<std::string> mstack2(mstack);
 
-    std::cout << "mstack 2 top: " << mstack.top() << std::endl;
+    std::cout << "mstack 2 top: " << mstack2.top() << std::endl;
 
     MutantStack<std::string> mstack3;
     mstack3 = mstack2;
 
-    std::cout << "mstack 3 top: " << mstack.top() << std::endl;
+    std::cout << "mstack 3 top: " << mstack3.top() << std::endl;
 
     mstack3.push("Frankenstein by Mary Shelley (1823)");
 
@@ -116,7 +116,7 @@ int main(void) {
     MutantStack<std::string>::const_iterator ib = mstack3.begin();
     MutantStack<std::string>::const_iterator ie = mstack3.end();
 
-    std::cout << "Bookshelf: " << std::endl;
+    std::cout << "Bookshelf (via const iterator): " << std::endl;
     for (MutantStack<std::string>::const_iterator it = ib; it != ie; ++it) {
       std::cout << "  " << *it << std::endl;
     }
