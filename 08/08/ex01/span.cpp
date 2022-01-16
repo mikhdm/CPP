@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:39:28 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 04:31:10 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 04:57:56 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,28 +36,6 @@ Span& Span::operator=(Span const& instance) {
     throw InconsistentInputException();
   addNumbers(instance.begin(), instance.end());
   return *this;
-}
-
-
-bool Span::is_sorted(void) const {
-  if (_data.size() <= 1)
-    return true;
-
-  bool direction = *_data.begin() <= *(_data.begin() + 1); 
-
-  std::cout << std::boolalpha << direction << std::endl;
-
-  for (Span::const_iter_type it = _data.begin() + 1; it != _data.end(); ++it) {
-    if (direction) {
-      if (*(it - 1) > *it)
-        return false;
-    }
-    else { // backward direction
-      if (*(it - 1) <= *it)
-        return false;
-    }
-  }
-  return true;
 }
 
 
@@ -93,9 +71,7 @@ void Span::addNumber(int n) {
     throw FullSpanException();
   _data.push_back(n);
  
-  /* is_sorted(); */
   // invariant: _data is sorted
-  /* if (!is_sorted()) */
   std::sort(_data.begin(), _data.end());
 }
 
@@ -113,7 +89,6 @@ void Span::addNumbers(Span::const_iter_type l, Span::const_iter_type r) {
   std::copy(l, r, std::back_inserter(_data));
 
   // invariant: _data is sorted
-  /* if (!is_sorted()) */
   std::sort(_data.begin(), _data.end());
 }
 

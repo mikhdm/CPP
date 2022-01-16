@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:54:35 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 04:46:24 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 04:56:52 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,16 @@ int main(void) {
     catch (std::exception const& e) {
       std::cout << "  " << e.what() << std::endl;
     }
+
+    std::cout << "Trying to add via addNumber (too small span): " << std::endl;
+    Span sp3(1);
+
+    try {
+      sp3.addNumbers(mirror.begin(), mirror.begin() + 2);
+    }
+    catch (std::exception const& e) {
+      std::cout << "  " << e.what() << std::endl;
+    }
   }
 
   {
@@ -107,8 +117,8 @@ int main(void) {
 
 
     std::cout << "Testing shortest / longest span (very big): " << std::endl;
-    Span sp2(100000000);
-    std::vector<int> sp2mirror(100000000);
+    Span sp2(10000000);
+    std::vector<int> sp2mirror(10000000);
 
     for (std::vector<int>::iterator it = sp2mirror.begin(); it != sp2mirror.end(); ++it) {
       *it = std::rand() % imax + imin;
@@ -120,19 +130,31 @@ int main(void) {
     std::cout << " shortest span: " << sp2.shortestSpan() << std::endl;
     std::cout << " longest span: " << sp2.longestSpan() << std::endl;
 
+    std::cout << "Testing shortest / longest span (too small span): " << std::endl;
+    Span sp3(1);
+    sp3.addNumber(10);
+    try {
+      static_cast<void>(sp3.shortestSpan());
+      static_cast<void>(sp3.longestSpan());
+    }
+    catch (std::exception const& e) {
+      std::cout << "  " << e.what() << std::endl;
+    }
+
   }
-
   
-  /* { */
-  /*   Span sp = Span(5); */
-  /*   sp.addNumber(5); */
-  /*   sp.addNumber(3); */
-  /*   sp.addNumber(17); */
-  /*   sp.addNumber(9); */
-  /*   sp.addNumber(11); */
+  std::cout << std::endl << "Subject: " << std::endl;
+  
+  {
+    Span sp = Span(5);
+    sp.addNumber(5);
+    sp.addNumber(3);
+    sp.addNumber(17);
+    sp.addNumber(9);
+    sp.addNumber(11);
 
-  /*   std::cout << sp.shortestSpan() << std::endl; */
-  /*   std::cout << sp.longestSpan() << std::endl; */
-  /* } */
+    std::cout << sp.shortestSpan() << std::endl;
+    std::cout << sp.longestSpan() << std::endl;
+  }
   return (0);
 }
