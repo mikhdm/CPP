@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:07:29 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 07:12:23 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 07:20:47 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,14 @@ int main(void) {
     for (MutantStack<std::string>::const_iterator it = ib; it != ie; ++it) {
       std::cout << "  " << *it << std::endl;
     }
+
+    std::cout << "mstack 3 size: " << mstack3.size() << std::endl;
+    mstack3.pop();
+    std::cout << "mstack 3 size (after 1 pop): " << mstack3.size() << std::endl;
+
+    std::cout << std::boolalpha << "mstack 3 empty ?: " << mstack3.empty() << std::endl;
+    mstack3.pop();
+    std::cout << std::boolalpha << "mstack 3 empty (after pop last elem) ?: " << mstack3.empty() << std::endl;
 
   }
   return 0;
