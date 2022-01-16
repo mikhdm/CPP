@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:54:35 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 18:15:17 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 20:07:33 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,15 +106,15 @@ int main(void) {
     int const imin = std::numeric_limits<int>::min();
     int const imax = std::numeric_limits<int>::max();
 
+    // ----
+    
     std::cout << "Testing shortest / longest span (base): " << std::endl;
-    Span sp(6);
 
-    sp.addNumber(imax);
-    sp.addNumber(imin + 1);
-    sp.addNumber(imax - 1);
-    sp.addNumber(imin + 2);
-    sp.addNumber(imax - 1);
-    sp.addNumber(imin + 3);
+    Span sp(3);
+
+    sp.addNumber(imin);
+    sp.addNumber(imin);
+    sp.addNumber(1);
 
     std::cout << " " << sp << std::endl;  
     std::cout << " shortest span: " << sp.shortestSpan() << std::endl;
