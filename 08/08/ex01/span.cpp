@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:39:28 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 04:57:56 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 05:02:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ Span::~Span(void) {}
 
 
 Span::Span(Span const& instance) {
-  _data.reserve(instance.size());
+  _data.reserve(instance.capacity());
   *this = instance;
 }
 

@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:54:35 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 04:56:52 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 05:03:02 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int main(void) {
     sp.addNumbers(mirror.begin(), mirror.end());
     std::cout << "  " << sp << std::endl;
 
-    std::cout << "Trying to add big vector via addNumbers: " << std::endl;
+    std::cout << "Trying to add too big vector via addNumbers: " << std::endl;
     try {
       sp2.addNumbers(big.begin(), big.end());
     }
