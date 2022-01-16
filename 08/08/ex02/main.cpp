@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:07:29 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 07:20:47 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 07:23:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,10 @@ int main(void) {
     std::cout << std::boolalpha << "mstack 3 empty ?: " << mstack3.empty() << std::endl;
     mstack3.pop();
     std::cout << std::boolalpha << "mstack 3 empty (after pop last elem) ?: " << mstack3.empty() << std::endl;
+
+    std::cout << "mstack 1 == mstack 2 ?: " << std::boolalpha << (mstack == mstack2) << std::endl;
+    std::cout << "mstack 1 == mstack 3 ?: " << std::boolalpha << (mstack == mstack3) << std::endl;
+    std::cout << "mstack 1 < mstack 3 ?: " << std::boolalpha << (mstack == mstack3) << std::endl;
 
   }
   return 0;
