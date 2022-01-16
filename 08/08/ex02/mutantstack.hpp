@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:06:45 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 07:00:38 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 07:02:20 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ class MutantStack : public std::stack<T> {
 
   MutantStack<T>(void);
   virtual ~MutantStack<T>(void);
-  MutantStack<T>(MutantStack<T> const& instance);
-  MutantStack<T>& operator=(MutantStack<T> const& instance); 
+  MutantStack<T>(MutantStack<T> const& s);
+  MutantStack<T>& operator=(MutantStack<T> const& s); 
 
   iterator begin(void);
   iterator end(void);
