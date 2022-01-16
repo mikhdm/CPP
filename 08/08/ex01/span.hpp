@@ -6,9 +6,11 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:12:20 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 04:31:00 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 05:06:37 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#pragma once
 
 #ifndef SPAN_HPP
 # define SPAN_HPP
