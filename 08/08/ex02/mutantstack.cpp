@@ -6,9 +6,8 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:07:14 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 05:07:52 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 06:31:14 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mutantstack.hpp"
-
