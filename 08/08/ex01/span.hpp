@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 21:12:20 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 05:06:37 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 15:25:40 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,6 @@ class Span {
 
  private:
   Span(void);
-  bool is_sorted(void) const;
-
   std::vector<int>  _data;
 };
 
