@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/16 05:07:29 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/16 07:23:40 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 07:29:43 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,19 @@ int main(void) {
     mstack3.pop();
     std::cout << std::boolalpha << "mstack 3 empty (after pop last elem) ?: " << mstack3.empty() << std::endl;
 
-    std::cout << "mstack 1 == mstack 2 ?: " << std::boolalpha << (mstack == mstack2) << std::endl;
-    std::cout << "mstack 1 == mstack 3 ?: " << std::boolalpha << (mstack == mstack3) << std::endl;
-    std::cout << "mstack 1 < mstack 3 ?: " << std::boolalpha << (mstack == mstack3) << std::endl;
+    MutantStack<char> mstack4;
+    mstack4.push('a');
+
+    MutantStack<char> mstack5;
+    mstack4.push('b');
+
+    MutantStack<char> mstack6;
+    mstack4.push('c');
+
+    std::cout << "mstack 4 == mstack 5 ?: " << std::boolalpha << (mstack4 == mstack5) << std::endl;
+    std::cout << "mstack 5 == mstack 5 ?: " << std::boolalpha << (mstack5 == mstack5) << std::endl;
+    std::cout << "mstack 4 > mstack 5 ?: " << std::boolalpha << (mstack4 > mstack5) << std::endl;
+    std::cout << "mstack 5 < mstack 6 ?: " << std::boolalpha << (mstack5 < mstack6) << std::endl;
 
   }
   return 0;
