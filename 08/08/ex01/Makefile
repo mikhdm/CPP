@@ -5,17 +5,18 @@
 #                                                     +:+ +:+         +:+      #
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/01/15 17:17:38 by rmander           #+#    #+#              #
-#    Updated: 2022/01/15 21:13:06 by rmander          ###   ########.fr        #
+#    Created: 2022/01/15 19:14:04 by rmander           #+#    #+#              #
+#    Updated: 2022/01/16 00:24:08 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = test
+NAME = span
 
 CC = clang++
 CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -Wc++98-compat-pedantic
 
-SRCS = ./main.cpp
+SRCS = ./main.cpp \
+	   ./span.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 DEPS = $(SRCS:.cpp=.d)
