@@ -6,7 +6,7 @@
 /*   By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/15 15:40:03 by rmander           #+#    #+#             */
-/*   Updated: 2022/01/15 21:12:54 by rmander          ###   ########.fr       */
+/*   Updated: 2022/01/16 15:14:07 by rmander          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,14 @@
 # define EASYFIND_HPP
 
 #include <algorithm>
-#include <iterator>
+
+
+template <typename T>
+typename T::iterator easyfind(T& container, int value) {
+  typename T::iterator it = 
+    std::find(container.begin(), container.end(), value);
+  return it;
+}
 
 
 template <typename T>
