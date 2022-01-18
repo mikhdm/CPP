@@ -6,14 +6,14 @@
 #    By: rmander <rmander@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/21 15:32:36 by rmander           #+#    #+#              #
-#    Updated: 2021/12/22 15:51:10 by rmander          ###   ########.fr        #
+#    Updated: 2022/01/18 19:04:44 by rmander          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = diamondtrap
 
 CC = clang++
-CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wno-shadow -fno-elide-constructors
+CPPFLAGS = -std=c++98 -MD -Wall -Wextra -Werror -Wpedantic -Wshadow -fno-elide-constructors
 
 SRCS = ./main.cpp \
 	   ./ClapTrap.cpp \
